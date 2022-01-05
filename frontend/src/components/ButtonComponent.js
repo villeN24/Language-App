@@ -3,13 +3,38 @@ import DataBlock from "./DataBlock";
 
 const ButtonComponent = () => {
   let [answer, setAnswer] = useState("");
+  let [correctAnswer, setCorrectAnswer] = useState("");
+  let [result, setResult] = useState("");
+
+  const handleChange = (event) => {
+    let tmp = event.target.value;
+    setAnswer(tmp);
+  };
+  const dataToParent = (childData) => {
+    setCorrectAnswer(childData);
+  };
+  const checkAnswer = () => {
+    console.log(answer, typeof answer);
+    console.log(correctAnswer, typeof correctAnswer);
+    if (answer === correctAnswer) {
+      setResult("Correct");
+    } else {
+      setResult("Wrong");
+    }
+  };
 
   return (
     <div>
-      <button>Check your answer.</button>
-      <DataBlock choice={1} />
-      <DataBlock choice={2} />
-      <p>{answer}</p>
+      <form className="inputComponent">
+        <input
+          type="text"
+          placeholder="Type your answer"
+          onChange={(event) => handleChange(event)}
+        />
+      </form>
+      <button onClick={checkAnswer}>Check your answer.</button>
+      <DataBlock dataToParent={dataToParent} id={1} language="finnish" />
+      <p>{result}</p>
     </div>
   );
 };

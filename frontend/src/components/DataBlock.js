@@ -6,10 +6,15 @@ const DataBlock = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get("http://localhost:8080/words/1");
+      let response = await axios.get(`http://localhost:8080/words/${props.id}`);
       let json = Object.values(response.data);
-      console.log(json);
-      setData(json[props.choice]);
+      if (props.language === "finnish") {
+        setData(json[1]);
+        props.dataToParent(json[2]);
+      } else {
+        setData(json[2]);
+        props.dataToParent(json[1]);
+      }
     };
     fetchData();
   }, []);
