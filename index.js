@@ -20,16 +20,3 @@ const server = app.listen(port, () => {
     }
   });
 });
-
-const shutdown = () => {
-  console.log("Closing server.");
-  server.close(() => {
-    console.log("Server closed.");
-    pool.end(() => {
-      process.exit(0);
-    });
-  });
-};
-
-process.on("SIGINT", shutdown);
-process.on("SIGTERM", shutdown);

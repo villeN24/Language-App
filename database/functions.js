@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-let tableName = "test";
+let tableName = "words";
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -36,7 +36,7 @@ let connectionFunctions = {
   save: (userInput1, userInput2) => {
     function funkkari(resolve, reject) {
       connection.query(
-        `INSERT INTO locations (latitude,longitude) Values(?, ?)`,
+        `INSERT INTO ${tableName} (suomeksi,englanniksi) Values(?, ?)`,
         [userInput1, userInput2],
         (err) => {
           if (err) {
@@ -61,43 +61,9 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  findAllFilterLat: (x, y) => {
-    function funkkari(resolve, reject) {
-      console.log(x, y);
-      connection.query(
-        "SELECT * FROM locations WHERE latitude BETWEEN ? AND ?",
-        [x, y],
-        (err, allLocations) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(allLocations);
-          }
-        }
-      );
-    }
-    return new Promise(funkkari);
-  },
-  findAllFilterLong: (x, y) => {
-    function funkkari(resolve, reject) {
-      console.log(x, y);
-      connection.query(
-        "SELECT * FROM locations WHERE longitude BETWEEN ? AND ?",
-        [x, y],
-        (err, allLocations) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(allLocations);
-          }
-        }
-      );
-    }
-    return new Promise(funkkari);
-  },
   deleteById: (id) => {
     function funkkari(resolve, reject) {
-      connection.query("DELETE FROM locations WHERE id = ?", [id], (err) => {
+      connection.query(`DELETE FROM ${tableName} WHERE id = ?`, [id], (err) => {
         if (err) {
           reject(err);
         } else {
@@ -110,7 +76,7 @@ let connectionFunctions = {
   findById: (id) => {
     function funkkari(resolve, reject) {
       connection.query(
-        "SELECT * FROM locations WHERE id = ?",
+        `SELECT * FROM ${tableName} WHERE id = ?`,
         [id],
         (err, foundLocation) => {
           if (err) {
