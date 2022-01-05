@@ -1,19 +1,20 @@
-var express = require(`express`);
+const express = require(`express`);
 const connection = require("../database/functions");
-var router = express.Router();
-var unexpectedErr = `Serverside error occured.`;
-var badReqErr = `Invalid request.`;
+const router = express.Router();
+const unexpectedErr = `Serverside error occured.`;
+const badReqErr = `Invalid request.`;
+const tableName = `words`;
 
 router.use((req, res, next) => {
-  console.log(`Logged`);
+  console.log(`Logged at wordsRoute`);
   next();
 });
 
 // GET ALL EMPTY
-router.get(`/words`, async (req, res) => {
+router.get(`/`, async (req, res) => {
   let allLocations;
   try {
-    allLocations = await connection.findAll();
+    allLocations = await connection.findAll(tableName);
   } catch {
     res.status(500).send({
       msg: unexpectedErr,
@@ -23,9 +24,9 @@ router.get(`/words`, async (req, res) => {
 });
 
 // FIND by ID
-router.get(`/words/:id([0-9]+)`, async (req, res) => {
+router.get(`/:id([0-9]+)`, async (req, res) => {
   try {
-    let foundLocation = await connection.findById(req.params.id);
+    let foundLocation = await connection.findById(tableName, req.params.id);
     if (foundLocation === null) {
       res.status(404).send({
         msg: "Cannot find resource with ID of " + req.params.id + ".",
@@ -40,7 +41,7 @@ router.get(`/words/:id([0-9]+)`, async (req, res) => {
   }
 });
 // DELETE by ID
-router.delete(`/locations/:id([0-9]+)`, async (req, res) => {
+router.delete(`/:id([0-9]+)`, async (req, res) => {
   try {
     let foundLocation = await connection.findById(req.params.id);
     if (foundLocation !== null) {

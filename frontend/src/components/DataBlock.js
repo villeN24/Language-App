@@ -6,7 +6,9 @@ const DataBlock = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get(`http://localhost:8080/words/${props.id}`);
+      let response = await axios.get(
+        `http://localhost:8080/${props.table}/${props.id}`
+      );
       let json = Object.values(response.data);
       if (props.language === "finnish") {
         setData(json[1]);

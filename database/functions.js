@@ -1,5 +1,4 @@
 const mysql = require("mysql");
-let tableName = "words";
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -49,7 +48,7 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  findAll: () => {
+  findAll: (tableName) => {
     function funkkari(resolve, reject) {
       connection.query(`SELECT * FROM ${tableName}`, (err, allLocations) => {
         if (err) {
@@ -73,7 +72,7 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  findById: (id) => {
+  findById: (tableName, id) => {
     function funkkari(resolve, reject) {
       connection.query(
         `SELECT * FROM ${tableName} WHERE id = ?`,

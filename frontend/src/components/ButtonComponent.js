@@ -14,8 +14,6 @@ const ButtonComponent = () => {
     setCorrectAnswer(childData);
   };
   const checkAnswer = () => {
-    console.log(answer, typeof answer);
-    console.log(correctAnswer, typeof correctAnswer);
     if (answer === correctAnswer) {
       setResult("Correct");
     } else {
@@ -33,7 +31,12 @@ const ButtonComponent = () => {
         />
       </form>
       <button onClick={checkAnswer}>Check your answer.</button>
-      <DataBlock dataToParent={dataToParent} id={1} language="finnish" />
+      <DataBlock
+        dataToParent={dataToParent}
+        table="colors"
+        id={1}
+        language="finnish"
+      />
       <p>{result}</p>
     </div>
   );
