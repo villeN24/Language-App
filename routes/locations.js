@@ -31,7 +31,7 @@ router.get(`/words/:id([0-9]+)`, async (req, res) => {
         msg: "Cannot find resource with ID of " + req.params.id + ".",
       });
     } else {
-      res.send(foundLocation);
+      res.send(foundLocation[0]);
     }
   } catch (err) {
     res.status(500).send({
