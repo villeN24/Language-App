@@ -35,7 +35,6 @@ const DataBlock = (props) => {
   return (
     <div>
        <form
-
       >
         <input
           type="text"

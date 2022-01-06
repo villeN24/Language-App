@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import DataBlock from "./DataBlock";
 const axios = require("axios").default;
+var points = 0
 
 const TableComponent = (props) => {
 let [table, setTable] = useState([])
-let [points, setPoints] = useState(0)
 let [trigger, setTrigger] = useState(0)
+let [displayPoints, setDisplayPoints] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,12 +21,12 @@ let [trigger, setTrigger] = useState(0)
   }, [])
 
   const sendAnswers = (event) => {
-      console.log(event)
       setTrigger(1)
   }
 
   const addPoint = () => {
-      setPoints(points + 1)
+      points = points + 1
+      setDisplayPoints(points)
   }
   return (
     <div>
@@ -33,7 +34,7 @@ let [trigger, setTrigger] = useState(0)
           {table.map((id) => (
               <li>
                   <DataBlock 
-                    ID={id.id}
+                    id={id.id}
                     checkFor="english"
                     finnish={id.finnish}
                     english={id.english}
@@ -44,6 +45,7 @@ let [trigger, setTrigger] = useState(0)
           ))}
         </ul>
         <button onClick={sendAnswers}>Submit answers</button>
+        <p>{displayPoints}</p>
     </div>)
 }
 
