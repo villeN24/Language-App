@@ -8,9 +8,12 @@ const routePets = "pets";
 const pets = require(`./routes/petsRoute.js`);
 const routeColors = "colors";
 const colors = require(`./routes/colorsRoute.js`);
+const routeAllCategories = "allCategories";
+const allCategories = require(`./routes/allCategoriesRoute.js`);
 
 app.use(express.json());
 app.use(cors());
+app.use(`/${routeAllCategories}`, allCategories);
 app.use(`/${routePets}`, pets);
 app.use(`/${routeColors}`, colors);
 

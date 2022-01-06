@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TableComponent from "./TableComponent";
 
 const ButtonComponent = () => {
@@ -6,7 +6,9 @@ const ButtonComponent = () => {
 
   return (
     <div>
-      <TableComponent/>
+      <TableComponent category="pets"/>
+      <br/>
+      <TableComponent category="colors"/>
     </div>
   );
 };

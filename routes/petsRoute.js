@@ -10,11 +10,11 @@ router.use((req, res, next) => {
   next();
 });
 
-// GET ALL EMPTY
+// GET ALL
 router.get(`/`, async (req, res) => {
   let allLocations;
   try {
-    allLocations = await connection.findAll(tableName);
+    allLocations = await connection.findCategory(tableName);
   } catch {
     res.status(500).send({
       msg: unexpectedErr,

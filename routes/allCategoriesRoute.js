@@ -3,10 +3,9 @@ const connection = require("../database/functions");
 const router = express.Router();
 const unexpectedErr = `Serverside error occured.`;
 const badReqErr = `Invalid request.`;
-const category = `colors`;
 
 router.use((req, res, next) => {
-  console.log(`Logged at colorRoute`);
+  console.log(`Logged at allCategoriesRoute`);
   next();
 });
 
@@ -14,7 +13,7 @@ router.use((req, res, next) => {
 router.get(`/`, async (req, res) => {
   let allLocations;
   try {
-    allLocations = await connection.findCategory(category);
+    allLocations = await connection.findAll();
   } catch {
     res.status(500).send({
       msg: unexpectedErr,
