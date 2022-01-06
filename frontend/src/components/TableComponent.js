@@ -8,7 +8,7 @@ let [table, setTable] = useState([])
   useEffect(() => {
     const fetchData = async () => {
       let response = await axios.get(
-        `http://localhost:8080/pets/`
+        `http://localhost:8080/colors`
       );
       let json = Object.values(response.data);
       setTable(json)
@@ -20,8 +20,13 @@ let [table, setTable] = useState([])
   return (
     <div>
         <ul>
-          {table.map((ID) => (
-              <li><DataBlock ID={ID.ID} checkFor="english" finnish={ID.suomeksi} english={ID.englanniksi}/></li>
+          {table.map((id) => (
+              <li><DataBlock 
+                    ID={id.id}
+                    checkFor="english"
+                    finnish={id.finnish}
+                    english={id.english}/>
+                </li>
           ))}
         </ul>
     </div>)

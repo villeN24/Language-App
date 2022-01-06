@@ -48,9 +48,21 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  findAll: (tableName) => {
+  findAll: () => {
     function funkkari(resolve, reject) {
-      connection.query(`SELECT * FROM ${tableName}`, (err, allLocations) => {
+      connection.query(`SELECT * FROM dictionary`, (err, allLocations) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(allLocations);
+        }
+      });
+    }
+    return new Promise(funkkari);
+  },
+    findCategory: (category) => {
+    function funkkari(resolve, reject) {
+      connection.query(`SELECT * FROM dictionary WHERE category = "${category}"`, (err, allLocations) => {
         if (err) {
           reject(err);
         } else {
@@ -62,7 +74,7 @@ let connectionFunctions = {
   },
   deleteById: (id) => {
     function funkkari(resolve, reject) {
-      connection.query(`DELETE FROM ${tableName} WHERE id = ?`, [id], (err) => {
+      connection.query(`DELETE FROM dictionary WHERE category = ${category} AND id = ?`, [id], (err) => {
         if (err) {
           reject(err);
         } else {
@@ -72,10 +84,10 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  findById: (tableName, id) => {
+  findById: (category, id) => {
     function funkkari(resolve, reject) {
       connection.query(
-        `SELECT * FROM ${tableName} WHERE id = ?`,
+        `SELECT * FROM dictionary WHERE category = ${category} AND id = ?`,
         [id],
         (err, foundLocation) => {
           if (err) {

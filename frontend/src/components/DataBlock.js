@@ -8,10 +8,10 @@ const DataBlock = (props) => {
   useEffect(() => {
       if (props.checkFor === "english") {
         setCorrectAnswer(props.english)
-      } else {
+      }
+      if (props.checkFor === "finnish") {
         setCorrectAnswer(props.finnish)
       }
-      
   }, [])
 
   const handleChange = (event) => {
@@ -22,9 +22,7 @@ const DataBlock = (props) => {
     event.preventDefault();
     checkAnswer(visual)
   }
-
   const checkAnswer = (input) => {
-    console.log(input, " ", correctAnswer)
     if (input === correctAnswer) {
       setAnswer("Correct");
     } else {
@@ -51,22 +49,3 @@ const DataBlock = (props) => {
 };
 
 export default DataBlock;
-
-  // let [data, setData] = useState("");
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let response = await axios.get(
-  //       `http://localhost:8080/${props.table}/${props.id}`
-  //     );
-  //     let json = Object.values(response.data);
-  //     if (props.language === "finnish") {
-  //       setData(json[1]);
-  //       props.dataToParent(json[2]);
-  //     } else {
-  //       setData(json[2]);
-  //       props.dataToParent(json[1]);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
