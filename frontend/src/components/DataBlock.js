@@ -12,19 +12,22 @@ const DataBlock = (props) => {
       if (props.checkFor === "finnish") {
         setCorrectAnswer(props.finnish)
       }
-  }, [])
+      if (props.trigger === 1 ) {
+        checkAnswer(visual)
+      }
+  }, [props.trigger])
 
   const handleChange = (event) => {
+    event.preventDefault();
     setVisual(event.target.value);
     
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    checkAnswer(visual)
-  }
+
   const checkAnswer = (input) => {
+    console.log(`${props.id} ${input} ${correctAnswer}`)
     if (input === correctAnswer) {
       setAnswer("Correct");
+      props.addPoint()
     } else {
       setAnswer("Wrong");
     }
@@ -32,7 +35,7 @@ const DataBlock = (props) => {
   return (
     <div>
        <form
-        onSubmit={(event) => handleSubmit(event)}
+
       >
         <input
           type="text"
@@ -40,7 +43,6 @@ const DataBlock = (props) => {
           value={visual}
           onChange={(event) => handleChange(event)}
         />
-        <input type="submit" value="Submit" />
       </form>
       <p>{props.finnish}</p>
       <p>{answer}</p>

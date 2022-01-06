@@ -7,8 +7,6 @@ const ButtonComponent = () => {
   return (
     <div>
       <TableComponent category="pets"/>
-      <br/>
-      <TableComponent category="colors"/>
     </div>
   );
 };
