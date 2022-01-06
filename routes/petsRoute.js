@@ -3,10 +3,10 @@ const connection = require("../database/functions");
 const router = express.Router();
 const unexpectedErr = `Serverside error occured.`;
 const badReqErr = `Invalid request.`;
-const tableName = `words`;
+const tableName = `pets`;
 
 router.use((req, res, next) => {
-  console.log(`Logged at wordsRoute`);
+  console.log(`Logged at petsRoute`);
   next();
 });
 

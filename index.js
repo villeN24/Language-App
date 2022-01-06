@@ -4,14 +4,14 @@ const express = require("express");
 const pool = require("./database/functions.js");
 const app = express();
 const port = 8080;
-const routePets = "words";
-const words = require(`./routes/wordRoute.js`);
+const routePets = "pets";
+const pets = require(`./routes/petsRoute.js`);
 const routeColors = "colors";
 const colors = require(`./routes/colorsRoute.js`);
 
 app.use(express.json());
 app.use(cors());
-app.use(`/${routePets}`, words);
+app.use(`/${routePets}`, pets);
 app.use(`/${routeColors}`, colors);
 
 const server = app.listen(port, () => {
