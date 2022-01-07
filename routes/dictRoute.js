@@ -3,9 +3,10 @@ const connection = require("../database/functions");
 const router = express.Router();
 const unexpectedErr = `Serverside error occured.`;
 const badReqErr = `Invalid request.`;
+const category = `colors`;
 
 router.use((req, res, next) => {
-  console.log(`Logged at allCategoriesRoute`);
+  console.log(`[Log] Dictionary route`);
   next();
 });
 
@@ -14,6 +15,18 @@ router.get(`/`, async (req, res) => {
   let allLocations;
   try {
     allLocations = await connection.findAll();
+  } catch {
+    res.status(500).send({
+      msg: unexpectedErr,
+    });
+  }
+  res.send(allLocations);
+});
+router.get(`/:category`, async (req, res) => {
+  let allLocations;
+  try {
+    console.log(req.body);
+    allLocations = await connection.findCategory(req.params.category);
   } catch {
     res.status(500).send({
       msg: unexpectedErr,
@@ -56,6 +69,14 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
       msg: unexpectedErr,
     });
   }
+});
+//
+router.post(`/`, async (req, res) => {
+  connection.save(
+    req.body.payload.finnish,
+    req.body.payload.english,
+    req.body.payload.category
+  );
 });
 
 module.exports = router;

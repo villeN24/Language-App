@@ -34,10 +34,10 @@ let connectionFunctions = {
   },
   save: (finnish, english, category) => {
     function funkkari(resolve, reject) {
-      console.log(finnish, english, category)
+      console.log(finnish, english, category);
       connection.query(
         `INSERT INTO dictionary (finnish, english, category) Values(?, ?, ?)`,
-        [finnish, english, category ],
+        [finnish, english, category],
         (err) => {
           if (err) {
             reject(err);
@@ -61,27 +61,34 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-    findCategory: (category) => {
+  findCategory: (category) => {
     function funkkari(resolve, reject) {
-      connection.query(`SELECT * FROM dictionary WHERE category = "${category}"`, (err, allLocations) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(allLocations);
+      connection.query(
+        `SELECT * FROM dictionary WHERE category = "${category}"`,
+        (err, allLocations) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(allLocations);
+          }
         }
-      });
+      );
     }
     return new Promise(funkkari);
   },
   deleteById: (id) => {
     function funkkari(resolve, reject) {
-      connection.query(`DELETE FROM dictionary WHERE category = ${category} AND id = ?`, [id], (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(id);
+      connection.query(
+        `DELETE FROM dictionary WHERE category = "${category}" AND id = ?`,
+        [id],
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(id);
+          }
         }
-      });
+      );
     }
     return new Promise(funkkari);
   },

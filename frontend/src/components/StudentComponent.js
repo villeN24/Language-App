@@ -1,12 +1,12 @@
-import React from 'react'
-import TableComponent from './TableComponent'
+import React from "react";
+import TableComponent from "./TableComponent";
 
 function StudentComponent() {
-    return (
-        <div>
-            <TableComponent category="colors"/>
-        </div>
-    )
+  return (
+    <div>
+      <TableComponent category="" />
+    </div>
+  );
 }
 
-export default StudentComponent
+export default StudentComponent;

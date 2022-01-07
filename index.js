@@ -4,18 +4,12 @@ const express = require("express");
 const pool = require("./database/functions.js");
 const app = express();
 const port = 8080;
-const routePets = "pets";
-const pets = require(`./routes/petsRoute.js`);
-const routeColors = "colors";
-const colors = require(`./routes/colorsRoute.js`);
-const routeAllCategories = "allCategories";
-const allCategories = require(`./routes/allCategoriesRoute.js`);
+const routeDictionary = "dictionary";
+const dictionary = require(`./routes/dictRoute.js`);
 
 app.use(express.json());
 app.use(cors());
-app.use(`/${routeAllCategories}`, allCategories);
-app.use(`/${routePets}`, pets);
-app.use(`/${routeColors}`, colors);
+app.use(`/${routeDictionary}`, dictionary);
 
 const server = app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
