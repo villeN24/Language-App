@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataBlock from "./DataBlock";
+import Button from '@mui/material/Button';
+
 const axios = require("axios").default;
 var points = 0
 
@@ -44,7 +46,7 @@ let [displayPoints, setDisplayPoints] = useState(0)
                 </li>
           ))}
         </ul>
-        <button onClick={sendAnswers}>Submit answers</button>
+        <Button variant="outlined" onClick={sendAnswers}>Submit answers</Button>
         <p>{displayPoints}</p>
     </div>)
 }
