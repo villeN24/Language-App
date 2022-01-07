@@ -18,7 +18,6 @@ let [displayPoints, setDisplayPoints] = useState(0)
       let json = Object.values(response.data);
       setTable(json)
     }
-    console.log("in hook")
     fetchData()
   }, [])
 

@@ -32,11 +32,12 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  save: (userInput1, userInput2) => {
+  save: (finnish, english, category) => {
     function funkkari(resolve, reject) {
+      console.log(finnish, english, category)
       connection.query(
-        `INSERT INTO ${tableName} (suomeksi,englanniksi) Values(?, ?)`,
-        [userInput1, userInput2],
+        `INSERT INTO dictionary (finnish, english, category) Values(?, ?, ?)`,
+        [finnish, english, category ],
         (err) => {
           if (err) {
             reject(err);

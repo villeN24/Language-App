@@ -58,5 +58,12 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
     });
   }
 });
+//
+router.post(`/`, async (req, res) => {
+    connection.save(req.body.payload.finnish,
+                    req.body.payload.english,
+                    req.body.payload.category)
+
+})
 
 module.exports = router;

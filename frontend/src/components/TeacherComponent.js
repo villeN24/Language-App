@@ -1,10 +1,10 @@
 import React from 'react'
-import TableComponent from './TableComponent'
+import InsertComponent from './InsertComponent'
 
 function TeacherComponent() {
     return (
         <div>
-            <TableComponent category="colors"/>
+            <InsertComponent />
         </div>
     )
 }

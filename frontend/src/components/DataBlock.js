@@ -23,7 +23,6 @@ const DataBlock = (props) => {
   const handleChange = (event) => {
     event.preventDefault();
     setVisual(event.target.value);
-    
   };
 
   const checkAnswer = (input) => {
