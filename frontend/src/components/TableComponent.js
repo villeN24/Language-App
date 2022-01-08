@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import DataBlock from "./DataBlock";
 import DataBlockAdmin from "./DataBlockAdmin";
 import Button from "@mui/material/Button";
-
 const axios = require("axios").default;
 var points = 0;
 
 const TableComponent = (props) => {
-  let [table, setTable] = useState([]);
-  let [trigger, setTrigger] = useState(0);
-  let [displayPoints, setDisplayPoints] = useState(0);
+  const [table, setTable] = useState([]);
+  const [trigger, setTrigger] = useState(0);
+  const [displayPoints, setDisplayPoints] = useState(0);
+  const [fromChild, setFromChild] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +20,13 @@ const TableComponent = (props) => {
       setTable(json);
     };
     fetchData();
-  }, []);
+  }, [fromChild]);
 
   const sendAnswers = () => {
     setTrigger(1);
+  };
+  const refreshList = () => {
+    setFromChild(1);
   };
 
   const addPoint = () => {
@@ -47,12 +50,10 @@ const TableComponent = (props) => {
             ) : (
               <DataBlockAdmin
                 id={id.id}
-                checkFor="english"
                 finnish={id.finnish}
                 english={id.english}
                 category={id.category}
-                addPoint={addPoint}
-                trigger={trigger}
+                triggerChange={refreshList}
               />
             )}
           </li>

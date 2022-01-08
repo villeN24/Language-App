@@ -56,6 +56,7 @@ router.get(`/:id([0-9]+)`, async (req, res) => {
 });
 // DELETE by ID
 router.delete(`/:id([0-9]+)`, async (req, res) => {
+  console.log(`[LOG] In router delete`);
   try {
     let foundLocation = await connection.findById(req.params.id);
     if (foundLocation !== null) {

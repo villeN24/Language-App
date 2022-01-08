@@ -33,8 +33,10 @@ let connectionFunctions = {
     return new Promise(funkkari);
   },
   save: (finnish, english, category) => {
-    console.log(`Trying to insert ${finnish} ${english} ${category}`);
     function funkkari(resolve, reject) {
+      console.log(
+        `[LOG] Inserting fin:${finnish} eng:${english} category:${category}`
+      );
       console.log(finnish, english, category);
       connection.query(
         `INSERT INTO dictionary (finnish, english, category) Values(?, ?, ?)`,
@@ -52,6 +54,7 @@ let connectionFunctions = {
   },
   findAll: () => {
     function funkkari(resolve, reject) {
+      console.log(`[LOG] Finding all`);
       connection.query(`SELECT * FROM dictionary`, (err, allLocations) => {
         if (err) {
           reject(err);
@@ -64,6 +67,7 @@ let connectionFunctions = {
   },
   findCategory: (category) => {
     function funkkari(resolve, reject) {
+      console.log(`[LOG] Finding all in category:${category}`);
       connection.query(
         `SELECT * FROM dictionary WHERE category = ?`,
         [category],
@@ -80,6 +84,7 @@ let connectionFunctions = {
   },
   deleteById: (id) => {
     function funkkari(resolve, reject) {
+      console.log(`[LOG] Deleting id:${id}`);
       connection.query(`DELETE FROM dictionary WHERE id = ?`, [id], (err) => {
         if (err) {
           reject(err);
@@ -90,10 +95,11 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  findById: (category, id) => {
+  findById: (id) => {
     function funkkari(resolve, reject) {
+      console.log(`[LOG] Finding id ${id}`);
       connection.query(
-        `SELECT * FROM dictionary WHERE category = ${category} AND id = ?`,
+        `SELECT * FROM dictionary WHERE id = ?`,
         [id],
         (err, foundLocation) => {
           if (err) {
