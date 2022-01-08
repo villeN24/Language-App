@@ -33,6 +33,7 @@ let connectionFunctions = {
     return new Promise(funkkari);
   },
   save: (finnish, english, category) => {
+    console.log(`Trying to insert ${finnish} ${english} ${category}`);
     function funkkari(resolve, reject) {
       console.log(finnish, english, category);
       connection.query(

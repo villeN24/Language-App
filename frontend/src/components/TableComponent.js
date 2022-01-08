@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataBlock from "./DataBlock";
+import DataBlockAdmin from "./DataBlockAdmin";
 import Button from "@mui/material/Button";
 
 const axios = require("axios").default;
@@ -21,7 +22,7 @@ const TableComponent = (props) => {
     fetchData();
   }, []);
 
-  const sendAnswers = (event) => {
+  const sendAnswers = () => {
     setTrigger(1);
   };
 
@@ -34,14 +35,26 @@ const TableComponent = (props) => {
       <ul>
         {table.map((id) => (
           <li>
-            <DataBlock
-              id={id.id}
-              checkFor="english"
-              finnish={id.finnish}
-              english={id.english}
-              addPoint={addPoint}
-              trigger={trigger}
-            />
+            {!props.admin ? (
+              <DataBlock
+                id={id.id}
+                checkFor="english"
+                finnish={id.finnish}
+                english={id.english}
+                addPoint={addPoint}
+                trigger={trigger}
+              />
+            ) : (
+              <DataBlockAdmin
+                id={id.id}
+                checkFor="english"
+                finnish={id.finnish}
+                english={id.english}
+                category={id.category}
+                addPoint={addPoint}
+                trigger={trigger}
+              />
+            )}
           </li>
         ))}
       </ul>

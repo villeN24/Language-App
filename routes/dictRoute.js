@@ -12,6 +12,7 @@ router.use((req, res, next) => {
 
 // GET ALL EMPTY
 router.get(`/`, async (req, res) => {
+  console.log(`[Log] Find all`);
   let allLocations;
   try {
     allLocations = await connection.findAll();
@@ -23,6 +24,7 @@ router.get(`/`, async (req, res) => {
   res.send(allLocations);
 });
 router.get(`/:category`, async (req, res) => {
+  console.log(`[Log] Find by category`);
   let allLocations;
   try {
     console.log(req.body);

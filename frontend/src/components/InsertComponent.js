@@ -24,7 +24,8 @@ function InsertComponent() {
       english: english,
       category: category,
     };
-    let res = await axios.post(`http://localhost:8080/colors`, {
+    console.log(`Inserting ${finnish} ${english} ${category}`);
+    let res = await axios.post(`http://localhost:8080/dictionary`, {
       payload: dataPacket,
     });
     console.log(res);

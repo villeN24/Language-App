@@ -4,7 +4,7 @@ import TableComponent from "./TableComponent";
 function StudentComponent() {
   return (
     <div>
-      <TableComponent category="" />
+      <TableComponent category="" admin={false} />
     </div>
   );
 }
