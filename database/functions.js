@@ -65,7 +65,8 @@ let connectionFunctions = {
   findCategory: (category) => {
     function funkkari(resolve, reject) {
       connection.query(
-        `SELECT * FROM dictionary WHERE category = "${category}"`,
+        `SELECT * FROM dictionary WHERE category = ?`,
+        [category],
         (err, allLocations) => {
           if (err) {
             reject(err);
@@ -79,17 +80,13 @@ let connectionFunctions = {
   },
   deleteById: (id) => {
     function funkkari(resolve, reject) {
-      connection.query(
-        `DELETE FROM dictionary WHERE category = "${category}" AND id = ?`,
-        [id],
-        (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(id);
-          }
+      connection.query(`DELETE FROM dictionary WHERE id = ?`, [id], (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(id);
         }
-      );
+      });
     }
     return new Promise(funkkari);
   },
