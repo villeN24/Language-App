@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataBlock from "./DataBlock";
 import DataBlockAdmin from "./DataBlockAdmin";
 import Button from "@mui/material/Button";
+import InsertComponent from "./InsertComponent";
 const axios = require("axios").default;
 var points = 0;
 
@@ -9,6 +10,7 @@ const TableComponent = (props) => {
   const [table, setTable] = useState([]);
   const [trigger, setTrigger] = useState(0);
   const [displayPoints, setDisplayPoints] = useState(0);
+  const [inserted, setInserted] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +21,7 @@ const TableComponent = (props) => {
       setTable(json);
     };
     fetchData();
-  }, []);
+  }, [inserted]);
 
   const sendAnswers = () => {
     setTrigger(1);
@@ -27,6 +29,10 @@ const TableComponent = (props) => {
   const addPoint = () => {
     points = points + 1;
     setDisplayPoints(points);
+  };
+  const afterInsert = () => {
+    console.log("In afterInsert");
+    setInserted(inserted + 1);
   };
   return (
     <div>
@@ -60,7 +66,9 @@ const TableComponent = (props) => {
           </Button>
           <p>{displayPoints}</p>
         </div>
-      ) : null}
+      ) : (
+        <InsertComponent afterInsert={afterInsert} />
+      )}
     </div>
   );
 };

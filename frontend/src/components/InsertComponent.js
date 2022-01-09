@@ -3,7 +3,7 @@ import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
 import axios from "axios";
 
-function InsertComponent() {
+function InsertComponent(props) {
   const [finnish, setFinnish] = useState(null);
   const [english, setenglish] = useState(null);
   const [category, setCategory] = useState(null);
@@ -18,12 +18,13 @@ function InsertComponent() {
       setCategory(event.target.value);
     }
   };
-  const printAnswers = async () => {
+  const addRow = async () => {
     let dataPacket = {
       finnish: finnish,
       english: english,
       category: category,
     };
+    props.afterInsert();
     console.log(`Inserting ${finnish} ${english} ${category}`);
     let res = await axios.post(`http://localhost:8080/dictionary`, {
       payload: dataPacket,
@@ -45,7 +46,7 @@ function InsertComponent() {
         placeholder="Write category"
         onChange={(event) => handleChange(event, 3)}
       />
-      <Button variant="outlined" onClick={printAnswers}>
+      <Button variant="outlined" onClick={addRow}>
         Insert into table
       </Button>
     </div>

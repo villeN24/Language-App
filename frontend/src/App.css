@@ -37,7 +37,12 @@
   }
 }
 
-button, form, p {
+button,
+form,
+p {
   display: inline-block;
   padding: 0px 10px;
+}
+li {
+  list-style-type: none;
 }
