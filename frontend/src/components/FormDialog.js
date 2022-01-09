@@ -22,7 +22,7 @@ export default function FormDialog(props) {
     setOpen(false);
   };
 
-  const addRow = async () => {
+  const editRow = async () => {
     let dataPacket = {
       finnish: finnish,
       english: english,
@@ -41,7 +41,7 @@ export default function FormDialog(props) {
     console.log(
       `New values: ${finnish} ${english} ${category} at id: ${props.id}`
     );
-    addRow();
+    editRow();
     setOpen(false);
   };
 

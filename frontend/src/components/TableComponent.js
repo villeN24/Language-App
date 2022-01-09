@@ -10,7 +10,7 @@ const TableComponent = (props) => {
   const [table, setTable] = useState([]);
   const [trigger, setTrigger] = useState(0);
   const [displayPoints, setDisplayPoints] = useState(0);
-  const [inserted, setInserted] = useState(0);
+  const [inserted, setInserted] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +32,7 @@ const TableComponent = (props) => {
   };
   const afterInsert = () => {
     console.log("In afterInsert");
-    setInserted(inserted + 1);
+    setInserted(!inserted);
   };
   return (
     <div>
