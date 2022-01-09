@@ -42,7 +42,7 @@ const TableComponent = (props) => {
             {!props.admin ? (
               <DataBlock
                 id={id.id}
-                checkFor="finnish"
+                checkFor={props.language}
                 finnish={id.finnish}
                 english={id.english}
                 addPoint={addPoint}
