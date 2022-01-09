@@ -5,7 +5,7 @@ import axios from "axios";
 
 function InsertComponent(props) {
   const [finnish, setFinnish] = useState(null);
-  const [english, setenglish] = useState(null);
+  const [english, setEnglish] = useState(null);
   const [category, setCategory] = useState(null);
 
   const handleChange = (event, from) => {
@@ -13,7 +13,7 @@ function InsertComponent(props) {
     if (from === 1) {
       setFinnish(event.target.value);
     } else if (from === 2) {
-      setenglish(event.target.value);
+      setEnglish(event.target.value);
     } else {
       setCategory(event.target.value);
     }
@@ -24,6 +24,9 @@ function InsertComponent(props) {
       english: english,
       category: category,
     };
+    setFinnish("");
+    setEnglish("");
+    setCategory("");
     props.afterInsert();
     console.log(`Inserting ${finnish} ${english} ${category}`);
     let res = await axios.post(`http://localhost:8080/dictionary`, {
@@ -36,14 +39,17 @@ function InsertComponent(props) {
     <div>
       <Input
         placeholder="Write in finnish"
+        value={finnish}
         onChange={(event) => handleChange(event, 1)}
       />
       <Input
         placeholder="Write in english"
+        value={english}
         onChange={(event) => handleChange(event, 2)}
       />
       <Input
         placeholder="Write category"
+        value={category}
         onChange={(event) => handleChange(event, 3)}
       />
       <Button variant="outlined" onClick={addRow}>
