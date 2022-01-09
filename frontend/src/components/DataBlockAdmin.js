@@ -7,6 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AlertDialog from "./AlertDialog";
+import FormDialog from "./FormDialog";
 
 const axios = require("axios").default;
 
@@ -54,6 +55,7 @@ const DataBlockAdmin = (props) => {
             english={props.english}
             category={props.category}
           />
+          <FormDialog id={props.id} afterInsert={props.afterInsert} />
         </div>
       ) : null}
     </div>

@@ -54,6 +54,7 @@ const TableComponent = (props) => {
                 finnish={id.finnish}
                 english={id.english}
                 category={id.category}
+                afterInsert={afterInsert}
               />
             )}
           </li>
@@ -67,7 +68,9 @@ const TableComponent = (props) => {
           <p>{displayPoints}</p>
         </div>
       ) : (
-        <InsertComponent afterInsert={afterInsert} />
+        <div>
+          <InsertComponent afterInsert={afterInsert} />
+        </div>
       )}
     </div>
   );

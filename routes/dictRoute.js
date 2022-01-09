@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 
 // GET ALL EMPTY
 router.get(`/`, async (req, res) => {
-  console.log(`[Log] Find all`);
+  console.log(`[Log] in router find all`);
   let allLocations;
   try {
     allLocations = await connection.findAll();
@@ -24,7 +24,7 @@ router.get(`/`, async (req, res) => {
   res.send(allLocations);
 });
 router.get(`/:category`, async (req, res) => {
-  console.log(`[Log] Find by category`);
+  console.log(`[Log] in router find by category`);
   let allLocations;
   try {
     console.log(req.body);
@@ -73,13 +73,23 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
     });
   }
 });
-//
+// INSERT AN ITEM
 router.post(`/`, async (req, res) => {
+  console.log(`[LOG] In router post`);
   connection.save(
     req.body.payload.finnish,
     req.body.payload.english,
     req.body.payload.category
   );
 });
-
+// EDIT AN ITEM
+router.patch(`/`, async (req, res) => {
+  console.log(`[LOG] In router patch`);
+  connection.editEntry(
+    req.body.payload.id,
+    req.body.payload.finnish,
+    req.body.payload.english,
+    req.body.payload.category
+  );
+});
 module.exports = router;

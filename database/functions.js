@@ -114,6 +114,23 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
+  editEntry: (id, finnish, english, category) => {
+    function funkkari(resolve, reject) {
+      console.log(`[LOG] Editing entry ${id}`);
+      connection.query(
+        ` UPDATE dictionary SET finnish = ?, english = ?, category= ? WHERE id = ?;`,
+        [finnish, english, category, id],
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve("Entry succesfully edited.");
+          }
+        }
+      );
+    }
+    return new Promise(funkkari);
+  },
 };
 
 module.exports = connectionFunctions;
