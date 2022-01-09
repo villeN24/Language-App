@@ -53,10 +53,14 @@ const TableComponent = (props) => {
           </li>
         ))}
       </ul>
-      <Button variant="outlined" onClick={sendAnswers}>
-        Submit answers
-      </Button>
-      <p>{displayPoints}</p>
+      {!props.admin ? (
+        <div>
+          <Button variant="outlined" onClick={sendAnswers}>
+            Submit answers
+          </Button>
+          <p>{displayPoints}</p>
+        </div>
+      ) : null}
     </div>
   );
 };
