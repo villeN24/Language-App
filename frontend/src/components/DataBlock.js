@@ -3,16 +3,21 @@ import Input from "@mui/material/Input";
 import Box from "@mui/material/Box";
 
 const DataBlock = (props) => {
-  let [answer, setAnswer] = useState("");
-  let [correctAnswer, setCorrectAnswer] = useState("");
-  let [visual, setVisual] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [visual, setVisual] = useState("");
   const [block, setBlockColor] = useState(null);
+  const [dispLang, setDispLang] = useState(null);
 
   useEffect(() => {
     if (props.checkFor === "english") {
+      console.log("Checking for finnish");
+      setDispLang(props.finnish);
       setCorrectAnswer(props.english);
     }
     if (props.checkFor === "finnish") {
+      console.log("Checking for english");
+      setDispLang(props.english);
       setCorrectAnswer(props.finnish);
     }
     if (props.trigger === 1) {
@@ -42,7 +47,7 @@ const DataBlock = (props) => {
         placeholder="Write your answer"
         onChange={(event) => handleChange(event)}
       />
-      <p>{props.finnish}</p>
+      <p>{dispLang}</p>
       <p>{answer}</p>
       <Box
         style={{ display: "inline-block" }}
