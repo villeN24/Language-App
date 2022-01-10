@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 
 function InsertComponent(props) {
-  const [finnish, setFinnish] = useState(null);
-  const [english, setEnglish] = useState(null);
-  const [category, setCategory] = useState(null);
+  const [finnish, setFinnish] = useState("");
+  const [english, setEnglish] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleChange = (event, from) => {
     event.preventDefault();
