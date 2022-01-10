@@ -2,11 +2,24 @@ import React, { useState, useEffect } from "react";
 import TableComponent from "./TableComponent";
 import Button from "@mui/material/Button";
 import { FormControl, FormControlLabel, FormLabel, RadioGroup, Radio } from '@mui/material';
+const axios = require("axios").default;
 
 function StudentComponent() {
   const [visible, setVisible] = useState(false);
   const [lang, setLang] = useState("");
   const [category, setCategory] = useState("")
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let response = await axios.get(
+        `http://localhost:8080/dictionary/unique`
+      );
+      let json = Object.values(response.data);
+      setCategories(json);
+    };
+    fetchData();
+  }, []);
 
   const showList = (selectedLang) => {
     setVisible(true);
@@ -28,8 +41,9 @@ function StudentComponent() {
             name="radio-buttons-group"
           >
               <FormControlLabel value="" control={<Radio onChange={handleChange}/>} label="All" />
-              <FormControlLabel value="Pets" control={<Radio onChange={handleChange}/>} label="Pets" />
-              <FormControlLabel value="Colors" control={<Radio onChange={handleChange}/>} label="Colors" />
+              {categories.map((id) => (
+              <FormControlLabel value={id.category} control={<Radio onChange={handleChange}/>} label={id.category} />
+              ))}
         </RadioGroup>
       </FormControl>
       <Button variant="outlined" onClick={() => showList("finnish")}>

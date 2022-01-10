@@ -118,13 +118,29 @@ let connectionFunctions = {
     function funkkari(resolve, reject) {
       console.log(`[LOG] Editing entry ${id}`);
       connection.query(
-        ` UPDATE dictionary SET finnish = ?, english = ?, category= ? WHERE id = ?;`,
+        `UPDATE dictionary SET finnish = ?, english = ?, category= ? WHERE id = ?;`,
         [finnish, english, category, id],
         (err) => {
           if (err) {
             reject(err);
           } else {
             resolve("Entry succesfully edited.");
+          }
+        }
+      );
+    }
+    return new Promise(funkkari);
+  },
+    getCategories: () => {
+    function funkkari(resolve, reject) {
+      console.log(`[LOG] Finging unique categories`);
+      connection.query(
+        `SELECT distinct category FROM dictionary;`,
+        (err, allCategories) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(allCategories);
           }
         }
       );

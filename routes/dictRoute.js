@@ -23,6 +23,19 @@ router.get(`/`, async (req, res) => {
   }
   res.send(allLocations);
 });
+// Find all unique categories
+router.get(`/unique`, async (req, res) => {
+  console.log(`[Log] in router find all uniques categories`);
+  let allLocations;
+  try {
+    allLocations = await connection.getCategories();
+  } catch {
+    res.status(500).send({
+      msg: unexpectedErr,
+    });
+  }
+  res.send(allLocations);
+});
 router.get(`/:category`, async (req, res) => {
   console.log(`[Log] in router find by category`);
   let allLocations;
