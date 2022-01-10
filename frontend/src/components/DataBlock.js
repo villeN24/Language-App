@@ -11,14 +11,14 @@ const DataBlock = (props) => {
 
   useEffect(() => {
     if (props.checkFor === "english") {
-      console.log("Checking for finnish");
-      setDispLang(props.finnish);
-      setCorrectAnswer(props.english);
-    }
-    if (props.checkFor === "finnish") {
-      console.log("Checking for english");
+      console.log("Empty set is finnish");
       setDispLang(props.english);
       setCorrectAnswer(props.finnish);
+    }
+    if (props.checkFor === "finnish") {
+      console.log("Empty set is english");
+      setDispLang(props.finnish);
+      setCorrectAnswer(props.english);
     }
     if (props.trigger === 1) {
       checkAnswer(visual);

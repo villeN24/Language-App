@@ -38,7 +38,7 @@ const TableComponent = (props) => {
     <div>
       <ul>
         {table.map((id) => (
-          <li>
+          <li key={id.id}>
             {!props.admin ? (
               <DataBlock
                 id={id.id}

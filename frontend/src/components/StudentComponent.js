@@ -14,10 +14,10 @@ function StudentComponent() {
   return (
     <div>
       <Button variant="outlined" onClick={() => showList("finnish")}>
-        {`Check for english -> finnish words`}
+        {`Write english words for finnish`}
       </Button>
       <Button variant="outlined" onClick={() => showList("english")}>
-        {`Check for finnish -> english words`}
+        {`Write finnish words for english`}
       </Button>
       {visible ? (
         <TableComponent language={lang} category="" admin={false} />
