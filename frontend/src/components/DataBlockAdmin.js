@@ -56,7 +56,12 @@ const DataBlockAdmin = (props) => {
             english={props.english}
             category={props.category}
           />
-          <FormDialog id={props.id} afterInsert={props.afterInsert} />
+          <FormDialog
+            id={props.id}
+            afterInsert={props.afterInsert}
+            finnish={props.finnish}
+            english={props.english}
+            category={props.category} />
         </div>
       ) : null}
     </div>

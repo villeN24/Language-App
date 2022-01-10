@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 const axios = require("axios").default;
 
 export default function FormDialog(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [finnish, setFinnish] = useState(null);
   const [english, setenglish] = useState(null);
   const [category, setCategory] = useState(null);
@@ -67,6 +67,7 @@ export default function FormDialog(props) {
           <DialogContentText>Type the new information</DialogContentText>
           <TextField
             autoFocus
+            defaultValue={props.finnish}
             margin="dense"
             id="name"
             label="Finnish translation"
@@ -76,6 +77,7 @@ export default function FormDialog(props) {
             onChange={(event) => handleChange(event, 1)}
           />
           <TextField
+            defaultValue={props.english}
             margin="dense"
             id="name"
             label="English translation"
@@ -85,6 +87,7 @@ export default function FormDialog(props) {
             onChange={(event) => handleChange(event, 2)}
           />
           <TextField
+            defaultValue={props.category}
             margin="dense"
             id="name"
             label="Category"
