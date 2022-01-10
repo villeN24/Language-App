@@ -76,7 +76,6 @@ export default function FormDialog(props) {
             onChange={(event) => handleChange(event, 1)}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="English translation"
@@ -86,7 +85,6 @@ export default function FormDialog(props) {
             onChange={(event) => handleChange(event, 2)}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Category"
