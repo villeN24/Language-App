@@ -40,28 +40,33 @@ const TableComponent = (props) => {
         {table.map((id) => (
           <li key={id.id}>
             {!props.admin ? (
-              <DataBlock
-                id={id.id}
-                checkFor={props.language}
-                finnish={id.finnish}
-                english={id.english}
-                addPoint={addPoint}
-                trigger={trigger}
-              />
-            ) : (
-              <DataBlockAdmin
-                id={id.id}
-                finnish={id.finnish}
-                english={id.english}
-                category={id.category}
-                afterInsert={afterInsert}
-              />
+              <div className="UserBlock">
+                <DataBlock
+                  id={id.id}
+                  checkFor={props.language}
+                  finnish={id.finnish}
+                  english={id.english}
+                  addPoint={addPoint}
+                  trigger={trigger}
+                />
+                </div>
+            ) :
+            (
+              <div className="AdminBlock">
+                <DataBlockAdmin
+                  id={id.id}
+                  finnish={id.finnish}
+                  english={id.english}
+                  category={id.category}
+                  afterInsert={afterInsert}
+                />
+              </div>
             )}
           </li>
         ))}
       </ul>
       {!props.admin ? (
-        <div>
+        <div id="SubmitButton">
           <Button variant="outlined" onClick={sendAnswers}>
             Submit answers
           </Button>

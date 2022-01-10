@@ -1,3 +1,6 @@
+html {
+  --flex-direction: column;
+}
 .App {
   text-align: center;
 }
@@ -37,4 +40,37 @@ p {
 }
 li {
   list-style-type: none;
+}
+#InsertDialog {
+  position: fixed;
+  bottom: 5px;
+  left: 28em;
+}
+#InsertButton {
+  margin-left: 10px;
+}
+.TopLinks {
+  display: inline-block;
+  margin: 10px;
+}
+.AdminBlock {
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+  background-color: #a7a7a7;
+  border-radius: 10px;
+}
+#SubmitButton {
+  display: block;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: var(--flex-direction);
+}
+.UserBlock {
+  flex: none;
+}
+#DeleteButton, #EditButton {
+  margin: 5px;
 }

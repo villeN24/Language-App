@@ -8,6 +8,7 @@ const DataBlock = (props) => {
   const [visual, setVisual] = useState("");
   const [block, setBlockColor] = useState(null);
   const [dispLang, setDispLang] = useState(null);
+  document.documentElement.style.setProperty("--flex-direction", "column")
 
   useEffect(() => {
     if (props.checkFor === "english") {

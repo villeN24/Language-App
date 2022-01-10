@@ -36,7 +36,7 @@ function InsertComponent(props) {
   };
 
   return (
-    <div>
+    <div id="InsertDialog">
       <Input
         placeholder="Write in finnish"
         value={finnish}
@@ -52,7 +52,7 @@ function InsertComponent(props) {
         value={category}
         onChange={(event) => handleChange(event, 3)}
       />
-      <Button variant="outlined" onClick={addRow}>
+      <Button id="InsertButton" variant="outlined" onClick={addRow}>
         Insert into table
       </Button>
     </div>

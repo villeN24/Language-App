@@ -9,8 +9,8 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Link to="/student"><Button variant="outlined">Student</Button></Link>
-        <Link to="/teacher"><Button variant="outlined">Teacher</Button></Link>
+        <Link to="/student"><div className="TopLinks"><Button variant="outlined">Student</Button></div></Link>
+        <Link to="/teacher"><div className="TopLinks"><Button variant="outlined">Teacher</Button></div></Link>
         <Routes>
           <Route path="/student" element={<StudentComponent/>} />
           <Route path="/teacher" element={<TeacherComponent/>} />     
