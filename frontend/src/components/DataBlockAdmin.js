@@ -26,6 +26,9 @@ const DataBlockAdmin = (props) => {
   const stopDisplay = () => {
     setDisplay(false);
   };
+  const middleMan = () => {
+    props.afterInsert();
+  };
 
   return (
     <div>
@@ -62,7 +65,7 @@ const DataBlockAdmin = (props) => {
           />
           <FormDialog
             id={props.id}
-            afterInsert={props.afterInsert}
+            afterInsert={middleMan}
             finnish={props.finnish}
             english={props.english}
             swedish={props.swedish}
