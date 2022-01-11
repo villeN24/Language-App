@@ -74,7 +74,15 @@ const TableComponent = (props) => {
           </Button>
           <br />
           {showScore ? (
-            <p>{`You got ${displayPoints} / ${table.length} answers correct.`}</p>
+            <div>
+              <p>{`You got ${displayPoints} / ${table.length} answers correct.`}</p>
+              <Button
+                variant="outlined"
+                onClick={() => window.location.reload(false)}
+              >
+                Try again
+              </Button>
+            </div>
           ) : null}
         </div>
       ) : (
