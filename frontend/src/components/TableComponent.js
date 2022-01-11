@@ -43,9 +43,11 @@ const TableComponent = (props) => {
               <div className="UserBlock">
                 <DataBlock
                   id={id.id}
-                  checkFor={props.language}
+                  visibleLang={props.visibleLang}
+                  blankLang={props.blankLang}
                   finnish={id.finnish}
                   english={id.english}
+                  swedish={id.swedish}
                   addPoint={addPoint}
                   trigger={trigger}
                 />

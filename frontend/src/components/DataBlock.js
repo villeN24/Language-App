@@ -11,15 +11,26 @@ const DataBlock = (props) => {
   document.documentElement.style.setProperty("--flex-direction", "column");
 
   useEffect(() => {
-    if (props.checkFor === "english") {
-      console.log("Empty set is finnish");
+    if (props.visibleLang === "english") {
+      console.log("Checking for english");
       setDispLang(props.english);
+    }
+    if (props.visibleLang === "finnish") {
+      console.log("Checking for finnish");
+      setDispLang(props.finnish);
+    }
+    if (props.visibleLang === "swedish") {
+      console.log("Checking for swedish");
+      setDispLang(props.swedish);
+    }
+    if (props.blankLang === "finnish") {
       setCorrectAnswer(props.finnish);
     }
-    if (props.checkFor === "finnish") {
-      console.log("Empty set is english");
-      setDispLang(props.finnish);
+    if (props.blankLang === "english") {
       setCorrectAnswer(props.english);
+    }
+    if (props.blankLang === "swedish") {
+      setCorrectAnswer(props.swedish);
     }
     if (props.trigger === 1) {
       checkAnswer(visual);

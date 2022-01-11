@@ -12,7 +12,8 @@ const axios = require("axios").default;
 
 function StudentComponent() {
   const [visible, setVisible] = useState(false);
-  const [lang, setLang] = useState("");
+  const [visibleLang, setVisileLang] = useState("");
+  const [blankLang, setBlankLang] = useState("");
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
 
@@ -25,9 +26,10 @@ function StudentComponent() {
     fetchData();
   }, []);
 
-  const showList = (selectedLang) => {
+  const showList = (visibleLang, blankLang) => {
     setVisible(true);
-    setLang(selectedLang);
+    setVisileLang(visibleLang);
+    setBlankLang(blankLang);
   };
 
   const handleChange = (event) => {
@@ -59,7 +61,10 @@ function StudentComponent() {
       </FormControl>
       <br />
       <div className="LanguageButtons">
-        <Button variant="outlined" onClick={() => showList("finnish")}>
+        <Button
+          variant="outlined"
+          onClick={() => showList("finnish", "english")}
+        >
           {`Write english words for finnish`}
         </Button>
       </div>
@@ -67,13 +72,16 @@ function StudentComponent() {
         <Button
           className="LanguageButtons"
           variant="outlined"
-          onClick={() => showList("english")}
+          onClick={() => showList("english", "finnish")}
         >
           {`Write finnish words for english`}
         </Button>
       </div>
       <div className="LanguageButtons">
-        <Button variant="outlined" onClick={() => showList("finnish")}>
+        <Button
+          variant="outlined"
+          onClick={() => showList("swedish", "finnish")}
+        >
           {`Write finnish words for swedish`}
         </Button>
       </div>
@@ -82,13 +90,16 @@ function StudentComponent() {
         <Button
           className="LanguageButtons"
           variant="outlined"
-          onClick={() => showList("english")}
+          onClick={() => showList("finnish", "swedish")}
         >
           {`Write swedish words for finnish`}
         </Button>
       </div>
       <div className="LanguageButtons">
-        <Button variant="outlined" onClick={() => showList("finnish")}>
+        <Button
+          variant="outlined"
+          onClick={() => showList("english", "swedish")}
+        >
           {`Write swedish words for english`}
         </Button>
       </div>
@@ -96,13 +107,18 @@ function StudentComponent() {
         <Button
           className="LanguageButtons"
           variant="outlined"
-          onClick={() => showList("english")}
+          onClick={() => showList("swedish", "english")}
         >
           {`Write english words for swedish`}
         </Button>
       </div>
       {visible ? (
-        <TableComponent language={lang} category={category} admin={false} />
+        <TableComponent
+          visibleLang={visibleLang}
+          blankLang={blankLang}
+          category={category}
+          admin={false}
+        />
       ) : null}
     </div>
   );
