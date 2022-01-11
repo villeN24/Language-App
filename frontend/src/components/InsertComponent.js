@@ -30,6 +30,7 @@ function InsertComponent(props) {
     };
     setFinnish("");
     setEnglish("");
+    setSwedish("");
     setCategory("");
     props.afterInsert();
     console.log(`Inserting ${finnish} ${english} ${swedish} ${category}`);
