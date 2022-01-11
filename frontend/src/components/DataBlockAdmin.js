@@ -14,7 +14,7 @@ const axios = require("axios").default;
 const DataBlockAdmin = (props) => {
   const [visible, setVisible] = useState(true);
   const [display, setDisplay] = useState(false);
-  document.documentElement.style.setProperty("--flex-direction", "row")
+  document.documentElement.style.setProperty("--flex-direction", "row");
 
   const deleteItem = async () => {
     console.log(props.id);
@@ -35,11 +35,12 @@ const DataBlockAdmin = (props) => {
   return (
     <div>
       {visible ? (
-        <div>
+        <div className="AdminBlock">
           <p>
             {props.id} {props.finnish} {props.english} {props.category}
           </p>
-          <Button id="DeleteButton"
+          <Button
+            id="DeleteButton"
             variant="outlined"
             color="error"
             onClick={openConfirmation}
@@ -47,7 +48,8 @@ const DataBlockAdmin = (props) => {
           >
             Delete
           </Button>
-          <AlertDialog id="EditButton"
+          <AlertDialog
+            id="EditButton"
             confirmDelete={openConfirmation}
             stopDisplay={stopDisplay}
             deleteItem={deleteItem}
@@ -61,7 +63,8 @@ const DataBlockAdmin = (props) => {
             afterInsert={props.afterInsert}
             finnish={props.finnish}
             english={props.english}
-            category={props.category} />
+            category={props.category}
+          />
         </div>
       ) : null}
     </div>

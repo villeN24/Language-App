@@ -27,8 +27,8 @@ html {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+html {
+  background-color: whitesmoke;
 }
 
 button,
@@ -57,7 +57,7 @@ li {
   width: 200px;
   height: 150px;
   margin: 10px;
-  background-color: #a7a7a7;
+  border: #9500ff solid 3px;
   border-radius: 10px;
 }
 #SubmitButton {
@@ -71,6 +71,7 @@ ul {
 .UserBlock {
   flex: none;
 }
-#DeleteButton, #EditButton {
+#DeleteButton,
+#EditButton {
   margin: 5px;
 }
