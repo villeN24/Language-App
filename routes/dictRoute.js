@@ -92,6 +92,7 @@ router.post(`/`, async (req, res) => {
   connection.save(
     req.body.payload.finnish,
     req.body.payload.english,
+    req.body.payload.swedish,
     req.body.payload.category
   );
 });

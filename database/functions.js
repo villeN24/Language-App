@@ -32,15 +32,15 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  save: (finnish, english, category) => {
+  save: (finnish, english, swedish, category) => {
     function funkkari(resolve, reject) {
       console.log(
-        `[LOG] Inserting fin:${finnish} eng:${english} category:${category}`
+        `[LOG] Inserting fin:${finnish} eng:${english} swe:${swedish} category:${category}`
       );
       console.log(finnish, english, category);
       connection.query(
-        `INSERT INTO dictionary (finnish, english, category) Values(?, ?, ?)`,
-        [finnish, english, category],
+        `INSERT INTO dictionary (finnish, english, swedish, category) Values(?, ?, ?, ?)`,
+        [finnish, english, swedish, category],
         (err) => {
           if (err) {
             reject(err);
@@ -114,12 +114,12 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  editEntry: (id, finnish, english, category) => {
+  editEntry: (id, finnish, english, swedish, category) => {
     function funkkari(resolve, reject) {
       console.log(`[LOG] Editing entry ${id}`);
       connection.query(
-        `UPDATE dictionary SET finnish = ?, english = ?, category= ? WHERE id = ?;`,
-        [finnish, english, category, id],
+        `UPDATE dictionary SET finnish = ?, english = ?, swedish = ?, category= ? WHERE id = ?;`,
+        [finnish, english, swedish, category, id],
         (err) => {
           if (err) {
             reject(err);
@@ -131,7 +131,7 @@ let connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-    getCategories: () => {
+  getCategories: () => {
     function funkkari(resolve, reject) {
       console.log(`[LOG] Finging unique categories`);
       connection.query(

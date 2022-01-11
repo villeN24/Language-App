@@ -7,6 +7,7 @@ function InsertComponent(props) {
   const [finnish, setFinnish] = useState("");
   const [english, setEnglish] = useState("");
   const [category, setCategory] = useState("");
+  const [swedish, setSwedish] = useState("");
 
   const handleChange = (event, from) => {
     event.preventDefault();
@@ -14,6 +15,8 @@ function InsertComponent(props) {
       setFinnish(event.target.value);
     } else if (from === 2) {
       setEnglish(event.target.value);
+    } else if (from === 3) {
+      setSwedish(event.target.value);
     } else {
       setCategory(event.target.value);
     }
@@ -22,13 +25,14 @@ function InsertComponent(props) {
     let dataPacket = {
       finnish: finnish,
       english: english,
+      swedish: swedish,
       category: category,
     };
     setFinnish("");
     setEnglish("");
     setCategory("");
     props.afterInsert();
-    console.log(`Inserting ${finnish} ${english} ${category}`);
+    console.log(`Inserting ${finnish} ${english} ${swedish} ${category}`);
     let res = await axios.post(`http://localhost:8080/dictionary`, {
       payload: dataPacket,
     });
@@ -48,9 +52,14 @@ function InsertComponent(props) {
         onChange={(event) => handleChange(event, 2)}
       />
       <Input
+        placeholder="Write in swedish"
+        value={swedish}
+        onChange={(event) => handleChange(event, 3)}
+      />
+      <Input
         placeholder="Write category"
         value={category}
-        onChange={(event) => handleChange(event, 3)}
+        onChange={(event) => handleChange(event, 4)}
       />
       <Button id="InsertButton" variant="outlined" onClick={addRow}>
         Insert into table
