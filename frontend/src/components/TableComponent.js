@@ -11,6 +11,7 @@ const TableComponent = (props) => {
   const [trigger, setTrigger] = useState(0);
   const [displayPoints, setDisplayPoints] = useState(0);
   const [inserted, setInserted] = useState(true);
+  const [showScore, setShowScore] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +26,7 @@ const TableComponent = (props) => {
 
   const sendAnswers = () => {
     setTrigger(1);
+    setShowScore(true);
   };
   const addPoint = () => {
     points = points + 1;
@@ -70,7 +72,10 @@ const TableComponent = (props) => {
           <Button variant="outlined" onClick={sendAnswers}>
             Submit answers
           </Button>
-          <p>{displayPoints}</p>
+          <br />
+          {showScore ? (
+            <p>{`You got ${displayPoints} / ${table.length} answers correct.`}</p>
+          ) : null}
         </div>
       ) : (
         <div>
