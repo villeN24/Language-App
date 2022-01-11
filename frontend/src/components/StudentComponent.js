@@ -57,12 +57,50 @@ function StudentComponent() {
           ))}
         </RadioGroup>
       </FormControl>
-      <Button variant="outlined" onClick={() => showList("finnish")}>
-        {`Write english words for finnish`}
-      </Button>
-      <Button variant="outlined" onClick={() => showList("english")}>
-        {`Write finnish words for english`}
-      </Button>
+      <br />
+      <div className="LanguageButtons">
+        <Button variant="outlined" onClick={() => showList("finnish")}>
+          {`Write english words for finnish`}
+        </Button>
+      </div>
+      <div className="LanguageButtons">
+        <Button
+          className="LanguageButtons"
+          variant="outlined"
+          onClick={() => showList("english")}
+        >
+          {`Write finnish words for english`}
+        </Button>
+      </div>
+      <div className="LanguageButtons">
+        <Button variant="outlined" onClick={() => showList("finnish")}>
+          {`Write finnish words for swedish`}
+        </Button>
+      </div>
+      <br />
+      <div className="LanguageButtons">
+        <Button
+          className="LanguageButtons"
+          variant="outlined"
+          onClick={() => showList("english")}
+        >
+          {`Write swedish words for finnish`}
+        </Button>
+      </div>
+      <div className="LanguageButtons">
+        <Button variant="outlined" onClick={() => showList("finnish")}>
+          {`Write swedish words for english`}
+        </Button>
+      </div>
+      <div className="LanguageButtons">
+        <Button
+          className="LanguageButtons"
+          variant="outlined"
+          onClick={() => showList("english")}
+        >
+          {`Write english words for swedish`}
+        </Button>
+      </div>
       {visible ? (
         <TableComponent language={lang} category={category} admin={false} />
       ) : null}

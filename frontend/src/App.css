@@ -75,3 +75,7 @@ ul {
 #EditButton {
   margin: 5px;
 }
+.LanguageButtons {
+  display: inline-block;
+  margin: 10px;
+}
