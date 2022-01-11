@@ -8,7 +8,7 @@ const DataBlock = (props) => {
   const [visual, setVisual] = useState("");
   const [block, setBlockColor] = useState(null);
   const [dispLang, setDispLang] = useState(null);
-  document.documentElement.style.setProperty("--flex-direction", "column")
+  document.documentElement.style.setProperty("--flex-direction", "column");
 
   useEffect(() => {
     if (props.checkFor === "english") {
@@ -24,7 +24,7 @@ const DataBlock = (props) => {
     if (props.trigger === 1) {
       checkAnswer(visual);
     }
-  }, [props.trigger]);
+  }, [props.trigger, props.checkFor]);
 
   const handleChange = (event) => {
     event.preventDefault();

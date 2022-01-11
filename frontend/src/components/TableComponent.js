@@ -21,7 +21,7 @@ const TableComponent = (props) => {
       setTable(json);
     };
     fetchData();
-  }, [inserted]);
+  }, [inserted, props.category]);
 
   const sendAnswers = () => {
     setTrigger(1);
@@ -49,18 +49,15 @@ const TableComponent = (props) => {
                   addPoint={addPoint}
                   trigger={trigger}
                 />
-                </div>
-            ) :
-            (
-              <div className="AdminBlock">
-                <DataBlockAdmin
-                  id={id.id}
-                  finnish={id.finnish}
-                  english={id.english}
-                  category={id.category}
-                  afterInsert={afterInsert}
-                />
               </div>
+            ) : (
+              <DataBlockAdmin
+                id={id.id}
+                finnish={id.finnish}
+                english={id.english}
+                category={id.category}
+                afterInsert={afterInsert}
+              />
             )}
           </li>
         ))}
