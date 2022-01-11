@@ -57,6 +57,7 @@ const DataBlockAdmin = (props) => {
             display={display}
             finnish={props.finnish}
             english={props.english}
+            swedish={props.swedish}
             category={props.category}
           />
           <FormDialog

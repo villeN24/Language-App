@@ -35,8 +35,8 @@ export default function AlertDialog(props) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {`You are deleting row 
-            ${props.finnish} | ${props.english} | ${props.category}`}
+            {`You are deleting row
+            ${props.finnish} | ${props.english} | ${props.swedish} | ${props.category}`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
