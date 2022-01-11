@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { IconButton, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import AlertDialog from "./AlertDialog";
 import FormDialog from "./FormDialog";
 
@@ -37,7 +32,13 @@ const DataBlockAdmin = (props) => {
       {visible ? (
         <div className="AdminBlock">
           <p>
-            {props.id} {props.finnish} {props.english} {props.category}
+            FIN = {props.finnish}
+            <br />
+            ENG = {props.english}
+            <br />
+            SWE = {props.swedish}
+            <br />
+            CAT = {props.category}
           </p>
           <Button
             id="DeleteButton"

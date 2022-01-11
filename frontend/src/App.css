@@ -54,11 +54,13 @@ li {
   margin: 10px;
 }
 .AdminBlock {
-  width: 200px;
-  height: 150px;
+  width: 180px;
   margin: 10px;
   border: #9500ff solid 3px;
   border-radius: 10px;
+  text-align: left;
+  padding-left: 20px;
+  padding-bottom: 20px;
 }
 #SubmitButton {
   display: block;

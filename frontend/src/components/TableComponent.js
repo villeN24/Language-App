@@ -55,6 +55,7 @@ const TableComponent = (props) => {
                 id={id.id}
                 finnish={id.finnish}
                 english={id.english}
+                swedish={id.swedish}
                 category={id.category}
                 afterInsert={afterInsert}
               />
