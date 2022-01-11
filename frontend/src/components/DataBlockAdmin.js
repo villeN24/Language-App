@@ -64,6 +64,7 @@ const DataBlockAdmin = (props) => {
             afterInsert={props.afterInsert}
             finnish={props.finnish}
             english={props.english}
+            swedish={props.swedish}
             category={props.category}
           />
         </div>

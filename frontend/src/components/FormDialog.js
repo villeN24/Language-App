@@ -11,7 +11,8 @@ const axios = require("axios").default;
 export default function FormDialog(props) {
   const [open, setOpen] = useState(false);
   const [finnish, setFinnish] = useState(null);
-  const [english, setenglish] = useState(null);
+  const [english, setEnglish] = useState(null);
+  const [swedish, setSwedish] = useState(null);
   const [category, setCategory] = useState(null);
 
   const handleClickOpen = () => {
@@ -26,11 +27,12 @@ export default function FormDialog(props) {
     let dataPacket = {
       finnish: finnish,
       english: english,
+      swedish: swedish,
       category: category,
       id: props.id,
     };
     props.afterInsert();
-    console.log(`Inserting ${finnish} ${english} ${category}`);
+    console.log(`Inserting ${finnish} ${english} ${swedish} ${category}`);
     let res = await axios.patch(`http://localhost:8080/dictionary`, {
       payload: dataPacket,
     });
@@ -39,7 +41,7 @@ export default function FormDialog(props) {
 
   const handleConfirm = () => {
     console.log(
-      `New values: ${finnish} ${english} ${category} at id: ${props.id}`
+      `New values: ${finnish} ${english} ${swedish} ${category} at id: ${props.id}`
     );
     editRow();
     setOpen(false);
@@ -50,7 +52,9 @@ export default function FormDialog(props) {
     if (from === 1) {
       setFinnish(event.target.value);
     } else if (from === 2) {
-      setenglish(event.target.value);
+      setEnglish(event.target.value);
+    } else if (from === 3) {
+      setSwedish(event.target.value);
     } else {
       setCategory(event.target.value);
     }
@@ -69,9 +73,7 @@ export default function FormDialog(props) {
             autoFocus
             defaultValue={props.finnish}
             margin="dense"
-            id="name"
             label="Finnish translation"
-            type="email"
             fullWidth
             variant="standard"
             onChange={(event) => handleChange(event, 1)}
@@ -79,22 +81,26 @@ export default function FormDialog(props) {
           <TextField
             defaultValue={props.english}
             margin="dense"
-            id="name"
             label="English translation"
-            type="email"
             fullWidth
             variant="standard"
             onChange={(event) => handleChange(event, 2)}
           />
           <TextField
-            defaultValue={props.category}
+            defaultValue={props.swedish}
             margin="dense"
-            id="name"
-            label="Category"
-            type="email"
+            label="Swedish translation"
             fullWidth
             variant="standard"
             onChange={(event) => handleChange(event, 3)}
+          />
+          <TextField
+            defaultValue={props.category}
+            margin="dense"
+            label="Category"
+            fullWidth
+            variant="standard"
+            onChange={(event) => handleChange(event, 4)}
           />
         </DialogContent>
         <DialogActions>

@@ -103,6 +103,7 @@ router.patch(`/`, async (req, res) => {
     req.body.payload.id,
     req.body.payload.finnish,
     req.body.payload.english,
+    req.body.payload.swedish,
     req.body.payload.category
   );
 });
