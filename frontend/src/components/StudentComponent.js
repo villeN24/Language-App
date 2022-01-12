@@ -44,93 +44,95 @@ function StudentComponent(props) {
           id="BackButton"
           style={{ minWidth: "200px", minHeight: "80px" }}
           variant="outlined"
-          onClick={props.setVis}
         >
           Go back
         </Button>
       </Link>
-      <FormControl component="fieldset">
-        <FormLabel component="legend">Select category</FormLabel>
-        <RadioGroup
-          aria-label="Select category"
-          defaultValue="All"
-          name="radio-buttons-group"
-        >
-          <FormControlLabel
-            value=""
-            control={<Radio onChange={handleChange} />}
-            label="All"
-          />
-          {categories.map((id) => (
-            <FormControlLabel
-              value={id.category}
-              control={<Radio onChange={handleChange} />}
-              label={id.category}
-            />
-          ))}
-        </RadioGroup>
-      </FormControl>
-      <br />
-      <div className="LanguageButtons">
-        <Button
-          variant="outlined"
-          onClick={() => showList("finnish", "english")}
-        >
-          {`Write english words for finnish`}
-        </Button>
-      </div>
-      <div className="LanguageButtons">
-        <Button
-          className="LanguageButtons"
-          variant="outlined"
-          onClick={() => showList("english", "finnish")}
-        >
-          {`Write finnish words for english`}
-        </Button>
-      </div>
-      <div className="LanguageButtons">
-        <Button
-          variant="outlined"
-          onClick={() => showList("swedish", "finnish")}
-        >
-          {`Write finnish words for swedish`}
-        </Button>
-      </div>
-      <br />
-      <div className="LanguageButtons">
-        <Button
-          className="LanguageButtons"
-          variant="outlined"
-          onClick={() => showList("finnish", "swedish")}
-        >
-          {`Write swedish words for finnish`}
-        </Button>
-      </div>
-      <div className="LanguageButtons">
-        <Button
-          variant="outlined"
-          onClick={() => showList("english", "swedish")}
-        >
-          {`Write swedish words for english`}
-        </Button>
-      </div>
-      <div className="LanguageButtons">
-        <Button
-          className="LanguageButtons"
-          variant="outlined"
-          onClick={() => showList("swedish", "english")}
-        >
-          {`Write english words for swedish`}
-        </Button>
-      </div>
-      {visible ? (
+      {!visible ? (
+        <div>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Select category</FormLabel>
+            <RadioGroup
+              aria-label="Select category"
+              defaultValue="All"
+              name="radio-buttons-group"
+            >
+              <FormControlLabel
+                value=""
+                control={<Radio onChange={handleChange} />}
+                label="All"
+              />
+              {categories.map((id) => (
+                <FormControlLabel
+                  value={id.category}
+                  control={<Radio onChange={handleChange} />}
+                  label={id.category}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+          <br />
+          <div className="LanguageButtons">
+            <Button
+              variant="outlined"
+              onClick={() => showList("finnish", "english")}
+            >
+              {`Write english words for finnish`}
+            </Button>
+          </div>
+          <div className="LanguageButtons">
+            <Button
+              className="LanguageButtons"
+              variant="outlined"
+              onClick={() => showList("english", "finnish")}
+            >
+              {`Write finnish words for english`}
+            </Button>
+          </div>
+          <div className="LanguageButtons">
+            <Button
+              variant="outlined"
+              onClick={() => showList("swedish", "finnish")}
+            >
+              {`Write finnish words for swedish`}
+            </Button>
+          </div>
+          <br />
+          <div className="LanguageButtons">
+            <Button
+              className="LanguageButtons"
+              variant="outlined"
+              onClick={() => showList("finnish", "swedish")}
+            >
+              {`Write swedish words for finnish`}
+            </Button>
+          </div>
+          <div className="LanguageButtons">
+            <Button
+              variant="outlined"
+              onClick={() => showList("english", "swedish")}
+            >
+              {`Write swedish words for english`}
+            </Button>
+          </div>
+          <div className="LanguageButtons">
+            <Button
+              className="LanguageButtons"
+              variant="outlined"
+              onClick={() => showList("swedish", "english")}
+            >
+              {`Write english words for swedish`}
+            </Button>
+          </div>
+        </div>
+      ) : (
         <TableComponent
           visibleLang={visibleLang}
           blankLang={blankLang}
           category={category}
           admin={false}
         />
-      ) : null}
+      )}
     </div>
   );
 }

@@ -11,7 +11,6 @@ function TeacherComponent(props) {
           id="BackButton"
           style={{ minWidth: "200px", minHeight: "80px" }}
           variant="outlined"
-          onClick={props.setVis}
         >
           Go back
         </Button>
