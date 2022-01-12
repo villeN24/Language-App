@@ -19,7 +19,11 @@ const App = () => {
           <div>
             <Link to="/student">
               <div className="TopLinks">
-                <Button variant="outlined" onClick={() => setDisp(false)}>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  onClick={() => setDisp(false)}
+                >
                   Student
                 </Button>
               </div>

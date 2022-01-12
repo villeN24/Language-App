@@ -6,6 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import EditIcon from "@material-ui/icons/Edit";
 const axios = require("axios").default;
 
 export default function FormDialog(props) {
@@ -62,7 +63,11 @@ export default function FormDialog(props) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button
+        variant="outlined"
+        onClick={handleClickOpen}
+        startIcon={<EditIcon />}
+      >
         Edit item
       </Button>
       <Dialog open={open} onClose={handleClose}>
