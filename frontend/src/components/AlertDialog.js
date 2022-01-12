@@ -40,10 +40,10 @@ export default function AlertDialog(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleConfirm}>Confirm</Button>
           <Button onClick={handleCancel} autoFocus>
             Cancel
           </Button>
+          <Button onClick={handleConfirm}>Confirm</Button>
         </DialogActions>
       </Dialog>
     </div>
