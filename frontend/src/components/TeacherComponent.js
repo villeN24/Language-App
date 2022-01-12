@@ -3,11 +3,11 @@ import TableComponent from "./TableComponent";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
-function TeacherComponent() {
+function TeacherComponent(props) {
   return (
     <div>
       <Link to="/">
-        <Button id="BackButton" variant="outlined">
+        <Button id="BackButton" variant="outlined" onClick={props.setVis}>
           Go back
         </Button>
       </Link>

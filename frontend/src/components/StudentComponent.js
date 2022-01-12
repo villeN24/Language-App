@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 const axios = require("axios").default;
 
-function StudentComponent() {
+function StudentComponent(props) {
   const [visible, setVisible] = useState(false);
   const [visibleLang, setVisileLang] = useState("");
   const [blankLang, setBlankLang] = useState("");
@@ -40,7 +40,7 @@ function StudentComponent() {
   return (
     <div>
       <Link to="/">
-        <Button id="BackButton" variant="outlined">
+        <Button id="BackButton" variant="outlined" onClick={props.setVis}>
           Go back
         </Button>
       </Link>
