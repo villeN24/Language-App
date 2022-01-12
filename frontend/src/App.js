@@ -1,44 +1,17 @@
 import "./App.css";
-import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import StudentComponent from "./components/StudentComponent";
 import TeacherComponent from "./components/TeacherComponent";
-import Button from "@mui/material/Button";
+import HomeComponent from "./components/HomeComponent";
 
 const App = () => {
-  const [disp, setDisp] = useState(true);
-
-  const setVis = () => {
-    setDisp(true);
-  };
-
   return (
     <div className="App">
-      {disp ? (
-        <div>
-          <Link to="/student">
-            <div className="TopLinks">
-              <Button
-                variant="outlined"
-                size="large"
-                onClick={() => setDisp(false)}
-              >
-                Student
-              </Button>
-            </div>
-          </Link>
-          <Link to="/teacher">
-            <div className="TopLinks">
-              <Button variant="outlined" onClick={() => setDisp(false)}>
-                Teacher
-              </Button>
-            </div>
-          </Link>
-        </div>
-      ) : null}
       <Routes>
-        <Route path="/student" element={<StudentComponent setVis={setVis} />} />
-        <Route path="/teacher" element={<TeacherComponent setVis={setVis} />} />
+        <Route path="/home" element={<HomeComponent />} />
+        <Route path="/student" element={<StudentComponent />} />
+        <Route path="/teacher" element={<TeacherComponent />} />
       </Routes>
     </div>
   );

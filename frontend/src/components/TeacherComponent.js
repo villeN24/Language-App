@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 function TeacherComponent(props) {
   return (
     <div>
-      <Link to="/">
+      <Link to="/home">
         <Button id="BackButton" variant="outlined" onClick={props.setVis}>
           Go back
         </Button>

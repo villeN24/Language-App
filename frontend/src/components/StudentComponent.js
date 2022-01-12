@@ -39,7 +39,7 @@ function StudentComponent(props) {
 
   return (
     <div>
-      <Link to="/">
+      <Link to="/home">
         <Button id="BackButton" variant="outlined" onClick={props.setVis}>
           Go back
         </Button>
