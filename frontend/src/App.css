@@ -87,3 +87,9 @@ ul {
   right: 5px;
   top: 5px;
 }
+.flexContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
