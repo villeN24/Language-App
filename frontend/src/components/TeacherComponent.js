@@ -7,10 +7,16 @@ function TeacherComponent(props) {
   return (
     <div>
       <Link to="/home">
-        <Button id="BackButton" variant="outlined" onClick={props.setVis}>
+        <Button
+          id="BackButton"
+          style={{ minWidth: "200px", minHeight: "80px" }}
+          variant="outlined"
+          onClick={props.setVis}
+        >
           Go back
         </Button>
       </Link>
+      <br style={{ lineHeight: "80px" }} />
       <TableComponent category="" admin={true} />
     </div>
   );
