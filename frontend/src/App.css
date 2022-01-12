@@ -45,6 +45,7 @@ li {
   position: fixed;
   bottom: 5px;
   left: 28em;
+  background-color: whitesmoke;
 }
 #InsertButton {
   margin-left: 10px;
