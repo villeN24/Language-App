@@ -19,6 +19,7 @@ const TableComponent = (props) => {
         `http://localhost:8080/dictionary/${props.category}`
       );
       let json = Object.values(response.data);
+      json.sort(() => Math.random() - 0.5);
       setTable(json);
     };
     fetchData();
