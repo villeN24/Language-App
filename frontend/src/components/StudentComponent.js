@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TableComponent from "./TableComponent";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import {
   FormControl,
@@ -38,6 +39,11 @@ function StudentComponent() {
 
   return (
     <div>
+      <Link to="/">
+        <Button id="BackButton" variant="outlined">
+          Go back
+        </Button>
+      </Link>
       <FormControl component="fieldset">
         <FormLabel component="legend">Select category</FormLabel>
         <RadioGroup
