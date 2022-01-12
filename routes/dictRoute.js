@@ -89,22 +89,34 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
 // INSERT AN ITEM
 router.post(`/`, async (req, res) => {
   console.log(`[LOG] In router post`);
-  connection.save(
-    req.body.payload.finnish,
-    req.body.payload.english,
-    req.body.payload.swedish,
-    req.body.payload.category
-  );
+  try {
+    connection.save(
+      req.body.payload.finnish,
+      req.body.payload.english,
+      req.body.payload.swedish,
+      req.body.payload.category
+    );
+  } catch (err) {
+    res.status(500).send({
+      msg: unexpectedErr,
+    });
+  }
 });
 // EDIT AN ITEM
 router.patch(`/`, async (req, res) => {
   console.log(`[LOG] In router patch`);
-  connection.editEntry(
-    req.body.payload.id,
-    req.body.payload.finnish,
-    req.body.payload.english,
-    req.body.payload.swedish,
-    req.body.payload.category
-  );
+  try {
+    connection.editEntry(
+      req.body.payload.id,
+      req.body.payload.finnish,
+      req.body.payload.english,
+      req.body.payload.swedish,
+      req.body.payload.category
+    );
+  } catch (err) {
+    res.status(500).send({
+      msg: unexpectedErr,
+    });
+  }
 });
 module.exports = router;
