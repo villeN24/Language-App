@@ -69,6 +69,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   flex-direction: var(--flex-direction);
+  margin-top: 40px;
 }
 .UserBlock {
   flex: none;
