@@ -8,6 +8,8 @@ const DataBlock = (props) => {
   const [visual, setVisual] = useState("");
   const [block, setBlockColor] = useState(null);
   const [dispLang, setDispLang] = useState(null);
+  const [dispCorrect, setDispCorrect] = useState(false);
+
   document.documentElement.style.setProperty("--flex-direction", "column");
 
   useEffect(() => {
@@ -51,6 +53,7 @@ const DataBlock = (props) => {
     } else {
       setAnswer("Wrong");
       setBlockColor("#EE1212");
+      setDispCorrect(true);
     }
   };
   return (
@@ -69,6 +72,8 @@ const DataBlock = (props) => {
           backgroundColor: `${block}`,
         }}
       />
+      <br />
+      {dispCorrect ? <p>The correct answer is: {correctAnswer}</p> : null}
     </div>
   );
 };
