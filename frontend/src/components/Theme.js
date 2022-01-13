@@ -1,30 +1,29 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from "@mui/material/styles";
+import { purple, orange, red } from "@mui/material/colors";
+
+const primaryColor = purple[500];
+const secondaryColor = orange[500];
+const dangerColor = red[900];
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#D84315",
+      // light: will be calculated from palette.primary.main,
+      main: primaryColor,
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
     },
-    success: {
-      main: "#4caf50",
+    secondary: {
+      main: secondaryColor,
+      // dark: will be calculated from palette.secondary.main,
     },
-  },
-  typography: {
-    fontSize: 16,
-    h3: {
-      fontWeight: 700,
-      fontSize: "2.2rem",
-    },
-    h4: {
-      fontWeight: 700,
-      fontSize: "1.75rem",
-    },
-    h5: {
-      fontWeight: 500,
-    },
-    h6: {
-      fontWeight: 500,
-    },
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: 0.2,
   },
 });
 
