@@ -72,7 +72,8 @@ ul {
   flex-direction: var(--flex-direction);
 }
 .UserBlock {
-  flex: none;
+  text-align: left;
+  padding-left: 40vmax;
 }
 #DeleteButton,
 #EditButton {

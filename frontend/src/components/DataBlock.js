@@ -72,7 +72,6 @@ const DataBlock = (props) => {
           backgroundColor: `${block}`,
         }}
       />
-      <br />
       {dispCorrect ? <p>The correct answer is: {correctAnswer}</p> : null}
     </div>
   );
