@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 function TeacherComponent(props) {
   return (
     <div>
-      <Link to="/home">
+      <Link to="/">
         <Button
           id="BackButton"
           style={{ minWidth: "200px", minHeight: "80px" }}
