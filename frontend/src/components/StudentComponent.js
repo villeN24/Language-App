@@ -10,6 +10,7 @@ import {
   Radio,
 } from "@mui/material";
 const axios = require("axios").default;
+const styleVariant = "contained";
 
 function StudentComponent(props) {
   const [visible, setVisible] = useState(false);
@@ -43,7 +44,7 @@ function StudentComponent(props) {
         <Button
           id="BackButton"
           style={{ minWidth: "200px", minHeight: "80px" }}
-          variant="outlined"
+          variant={styleVariant}
         >
           Go back
         </Button>
@@ -74,7 +75,7 @@ function StudentComponent(props) {
           <br />
           <div className="LanguageButtons">
             <Button
-              variant="outlined"
+              variant={styleVariant}
               onClick={() => showList("finnish", "english")}
             >
               {`Write english words for finnish`}
@@ -83,7 +84,7 @@ function StudentComponent(props) {
           <div className="LanguageButtons">
             <Button
               className="LanguageButtons"
-              variant="outlined"
+              variant={styleVariant}
               onClick={() => showList("english", "finnish")}
             >
               {`Write finnish words for english`}
@@ -91,7 +92,7 @@ function StudentComponent(props) {
           </div>
           <div className="LanguageButtons">
             <Button
-              variant="outlined"
+              variant={styleVariant}
               onClick={() => showList("swedish", "finnish")}
             >
               {`Write finnish words for swedish`}
@@ -101,7 +102,7 @@ function StudentComponent(props) {
           <div className="LanguageButtons">
             <Button
               className="LanguageButtons"
-              variant="outlined"
+              variant={styleVariant}
               onClick={() => showList("finnish", "swedish")}
             >
               {`Write swedish words for finnish`}
@@ -109,7 +110,7 @@ function StudentComponent(props) {
           </div>
           <div className="LanguageButtons">
             <Button
-              variant="outlined"
+              variant={styleVariant}
               onClick={() => showList("english", "swedish")}
             >
               {`Write swedish words for english`}
@@ -118,7 +119,7 @@ function StudentComponent(props) {
           <div className="LanguageButtons">
             <Button
               className="LanguageButtons"
-              variant="outlined"
+              variant={styleVariant}
               onClick={() => showList("swedish", "english")}
             >
               {`Write english words for swedish`}

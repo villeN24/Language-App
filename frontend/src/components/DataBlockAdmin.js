@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AlertDialog from "./AlertDialog";
 import FormDialog from "./FormDialog";
@@ -34,15 +34,13 @@ const DataBlockAdmin = (props) => {
     <div>
       {visible ? (
         <div className="AdminBlock">
-          <p>
-            FIN = {props.finnish}
-            <br />
-            ENG = {props.english}
-            <br />
-            SWE = {props.swedish}
-            <br />
-            CAT = {props.category}
-          </p>
+          <p className="bubble">FIN = {props.finnish}</p>
+          <Divider />
+          <p className="bubble">ENG = {props.english}</p>
+          <Divider />
+          <p className="bubble">SWE = {props.swedish}</p>
+          <Divider />
+          <p className="bubble">CAT = {props.category}</p>
           <Button
             id="DeleteButton"
             variant="outlined"

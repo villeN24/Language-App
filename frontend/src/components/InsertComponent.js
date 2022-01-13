@@ -62,7 +62,7 @@ function InsertComponent(props) {
         value={category}
         onChange={(event) => handleChange(event, 4)}
       />
-      <Button id="InsertButton" variant="outlined" onClick={addRow}>
+      <Button id="InsertButton" variant="contained" onClick={addRow}>
         Insert into table
       </Button>
     </div>

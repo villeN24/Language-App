@@ -5,30 +5,17 @@ html {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  background-color: #ffffff;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-html {
-  background-color: whitesmoke;
 }
 
 button,
@@ -45,7 +32,6 @@ li {
   position: fixed;
   bottom: 5px;
   left: 28em;
-  background-color: whitesmoke;
 }
 #InsertButton {
   margin-left: 10px;
@@ -57,7 +43,7 @@ li {
 .AdminBlock {
   width: 180px;
   margin: 10px;
-  border: #9500ff solid 3px;
+  border: #7b1fa2 solid 1px;
   border-radius: 10px;
   text-align: left;
   padding-left: 20px;
@@ -93,4 +79,8 @@ ul {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+.bubble {
+  margin: 4px;
+  padding: 4px;
 }

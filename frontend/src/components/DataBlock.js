@@ -60,7 +60,9 @@ const DataBlock = (props) => {
     <div>
       <Input
         placeholder="Write your answer"
+        type="text"
         onChange={(event) => handleChange(event)}
+        variant="filled"
       />
       <p>{dispLang}</p>
       <p>{answer}</p>

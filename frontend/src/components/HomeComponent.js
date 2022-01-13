@@ -11,14 +11,14 @@ const HomeComponent = () => {
     <div className="flexContainer">
       <Link to="/student">
         <div className="TopLinks">
-          <Button style={buttonStyle} variant="outlined">
+          <Button style={buttonStyle} variant="contained">
             Student
           </Button>
         </div>
       </Link>
       <Link to="/teacher">
         <div className="TopLinks">
-          <Button style={buttonStyle} variant="outlined">
+          <Button style={buttonStyle} variant="contained">
             Teacher
           </Button>
         </div>

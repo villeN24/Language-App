@@ -43,7 +43,9 @@ export default function AlertDialog(props) {
           <Button onClick={handleCancel} autoFocus>
             Cancel
           </Button>
-          <Button onClick={handleConfirm}>Confirm</Button>
+          <Button color="error" onClick={handleConfirm}>
+            Confirm
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

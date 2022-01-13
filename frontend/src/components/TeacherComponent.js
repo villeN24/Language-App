@@ -2,6 +2,7 @@ import React from "react";
 import TableComponent from "./TableComponent";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+const styleVariant = "contained";
 
 function TeacherComponent(props) {
   return (
@@ -11,6 +12,7 @@ function TeacherComponent(props) {
           id="BackButton"
           style={{ minWidth: "200px", minHeight: "80px" }}
           variant="outlined"
+          variant={styleVariant}
         >
           Go back
         </Button>

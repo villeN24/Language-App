@@ -70,7 +70,7 @@ const TableComponent = (props) => {
       </ul>
       {!props.admin ? (
         <div id="SubmitButton">
-          <Button variant="outlined" onClick={sendAnswers}>
+          <Button variant="contained" onClick={sendAnswers}>
             Submit answers
           </Button>
           <br />
@@ -78,7 +78,7 @@ const TableComponent = (props) => {
             <div>
               <p>{`You got ${displayPoints} / ${table.length} answers correct.`}</p>
               <Button
-                variant="outlined"
+                variant="contained"
                 onClick={() => window.location.reload(false)}
               >
                 Try again
