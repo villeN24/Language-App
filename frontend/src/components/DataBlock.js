@@ -64,7 +64,9 @@ const DataBlock = (props) => {
    */
   const handleChange = (event) => {
     event.preventDefault();
-    setVisual(event.target.value);
+    let tmp = event.target.value.trim();
+    let fin = tmp.toLowerCase();
+    setVisual(fin);
   };
 
   /**
