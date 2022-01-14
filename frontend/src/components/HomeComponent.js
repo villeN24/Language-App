@@ -1,3 +1,4 @@
+//@ts-check
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -6,6 +7,12 @@ const buttonStyle = {
   minHeight: "100px",
 };
 
+/**
+ * The homepage of the project.
+ *
+ * Contains 2 buttons, to direct the user to either
+ * teacher or student view of the application.
+ */
 const HomeComponent = () => {
   return (
     <div className="flexContainer">
