@@ -40,9 +40,13 @@ const TableComponent = (props) => {
    */
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get(`/dictionary/${props.category}`);
+      let response = await axios.get(
+        `http://localhost:8080/dictionary/${props.category}`
+      );
       let json = Object.values(response.data);
-      json.sort(() => Math.random() - 0.5);
+      if (!props.admin) {
+        json.sort(() => Math.random() - 0.5);
+      }
       setTable(json);
     };
     fetchData();
