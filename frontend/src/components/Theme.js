@@ -1,8 +1,14 @@
+//@ts-check
 import { createTheme } from "@mui/material/styles";
 
+/**
+ * Creates a theme with custom color palette.
+ *
+ * An object, that is used with material.ui components
+ * to give them custom theme.
+ */
 const theme = createTheme({
   palette: {
-    type: "light",
     primary: {
       main: "#7b1fa2",
     },
