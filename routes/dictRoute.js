@@ -16,12 +16,12 @@ router.get(`/`, async (req, res) => {
   let allLocations;
   try {
     allLocations = await connection.findAll();
+    res.status(200).send(allLocations);
   } catch {
     res.status(500).send({
       msg: unexpectedErr,
     });
   }
-  res.send(allLocations);
 });
 /**
  * Router function to get all categories.
@@ -34,12 +34,12 @@ router.get(`/unique`, async (req, res) => {
   let allLocations;
   try {
     allLocations = await connection.getCategories();
+    res.status(200).send(allLocations);
   } catch {
     res.status(500).send({
       msg: unexpectedErr,
     });
   }
-  res.send(allLocations);
 });
 /**
  * Router function to find all in a category.
@@ -51,21 +51,20 @@ router.get(`/unique`, async (req, res) => {
 router.get(`/:category`, async (req, res) => {
   let allLocations;
   try {
-    console.log(req.body);
     allLocations = await connection.findCategory(req.params.category);
+    res.status(200).send(allLocations);
   } catch {
     res.status(500).send({
       msg: unexpectedErr,
     });
   }
-  res.send(allLocations);
 });
 /**
  * Router function to delete by id.
  *
  * Directs a http delete query from it´s url to
  * delete a row from a database table with given
- * id, and returns OK.
+ * id.
  */
 router.delete(`/:id([0-9]+)`, async (req, res) => {
   try {
@@ -99,9 +98,10 @@ router.post(`/`, async (req, res) => {
       req.body.payload.swedish,
       req.body.payload.category
     );
+    res.status(201).send();
   } catch (err) {
     res.status(500).send({
-      msg: unexpectedErr,
+      msg: badReqErr,
     });
   }
 });
@@ -121,9 +121,10 @@ router.patch(`/`, async (req, res) => {
       req.body.payload.swedish,
       req.body.payload.category
     );
+    res.status(200).send();
   } catch (err) {
     res.status(500).send({
-      msg: unexpectedErr,
+      msg: badReqErr,
     });
   }
 });
