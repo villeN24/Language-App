@@ -1,4 +1,3 @@
-//@ts-check
 import React, { useState, useEffect } from "react";
 import TableComponent from "./TableComponent";
 import { Link } from "react-router-dom";

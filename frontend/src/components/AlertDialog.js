@@ -1,4 +1,3 @@
-//@ts-check
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";

@@ -1,4 +1,3 @@
-//@ts-check
 import { createTheme } from "@mui/material/styles";
 
 /**

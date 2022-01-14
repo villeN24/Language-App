@@ -1,4 +1,3 @@
-//@ts-check
 import React from "react";
 import TableComponent from "./TableComponent";
 import { Link } from "react-router-dom";
