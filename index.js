@@ -11,8 +11,11 @@ app.use(express.json());
 app.use(cors());
 app.use(`/${routeDictionary}`, dictionary);
 
+/**
+ * The server of the project.
+ */
 const server = app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${port}`);
   pool.connect((err) => {
     if (err) {
       console.log(err);
