@@ -1,3 +1,4 @@
+//@ts-check
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -9,21 +10,42 @@ import DialogTitle from "@mui/material/DialogTitle";
 import EditIcon from "@material-ui/icons/Edit";
 const axios = require("axios").default;
 
+/**
+ * A component that is used to edit existing wordpairs.
+ *
+ * This component is triggered when edit button is pressed
+ * in the parent component. Opens up a form with 4 text
+ * fields. When submitted, will send data to backend in
+ * order to edit a row in a database table.
+ *
+ */
 export default function FormDialog(props) {
+  /** A boolean to control if the form dialog is shown. */
   const [open, setOpen] = useState(false);
+  /** A variable to store the finnish translation to be inserted. */
   const [finnish, setFinnish] = useState(null);
+  /** A variable to store the english translation to be inserted. */
   const [english, setEnglish] = useState(null);
+  /** A variable to store the swedish translation to be inserted. */
   const [swedish, setSwedish] = useState(null);
+  /** A variable to store the category of the words to be inserted. */
   const [category, setCategory] = useState(null);
 
+  /** Opens the dialog form of the edit button. */
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  /** Closes the dialog form of the edit button. */
   const handleClose = () => {
     setOpen(false);
   };
-
+  /** Sends data to backend to edit a row in the database.
+   *
+   * Creates an object of the data to be sent to backend.
+   * Then sends the data, logs response to console and
+   * triggeres a table refresh in the parent component.
+   * @async
+   */
   const editRow = async () => {
     let dataPacket = {
       finnish: finnish,
@@ -32,22 +54,30 @@ export default function FormDialog(props) {
       category: category,
       id: props.id,
     };
+    // Triggeres table rerefresh in parent component.
     props.afterInsert();
-    console.log(`Inserting ${finnish} ${english} ${swedish} ${category}`);
     let res = await axios.patch(`http://localhost:8080/dictionary`, {
       payload: dataPacket,
     });
     console.log(res);
   };
-
+  /** Closes the edit form and triggeres editRow(). */
   const handleConfirm = () => {
-    console.log(
-      `New values: ${finnish} ${english} ${swedish} ${category} at id: ${props.id}`
-    );
     editRow();
     setOpen(false);
   };
 
+  /**
+   * Gets data from the form´s text fields and sets it to a variable.
+   *
+   * Gets the data that is typed in the text fields live, and
+   * sets the value to a corresponding variable. Will decide
+   * to what variable to set it to by from parameter.
+   *
+   * @param {object} event - A string value from the form text field.
+   * @param {number} from - A integer to decide from which text
+   * field event is from.
+   */
   const handleChange = (event, from) => {
     event.preventDefault();
     if (from === 1) {
