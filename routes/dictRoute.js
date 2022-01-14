@@ -1,18 +1,18 @@
 const express = require(`express`);
+const { LONG } = require("mysql/lib/protocol/constants/types");
 const connection = require("../database/functions");
 const router = express.Router();
 const unexpectedErr = `Serverside error occured.`;
 const badReqErr = `Invalid request.`;
 const category = `colors`;
 
-router.use((req, res, next) => {
-  console.log(`[Log] Dictionary route`);
-  next();
-});
-
-// GET ALL EMPTY
+/**
+ * Router function to get all from table.
+ *
+ * Directs http get query from it´s url to fetch
+ * everything from a database, and returns them.
+ */
 router.get(`/`, async (req, res) => {
-  console.log(`[Log] in router find all`);
   let allLocations;
   try {
     allLocations = await connection.findAll();
@@ -23,9 +23,14 @@ router.get(`/`, async (req, res) => {
   }
   res.send(allLocations);
 });
-// Find all unique categories
+/**
+ * Router function to get all categories.
+ *
+ * Directs http get query from it´s url to fetch
+ * every unique value from column "category", and
+ * returns them.
+ */
 router.get(`/unique`, async (req, res) => {
-  console.log(`[Log] in router find all uniques categories`);
   let allLocations;
   try {
     allLocations = await connection.getCategories();
@@ -36,8 +41,14 @@ router.get(`/unique`, async (req, res) => {
   }
   res.send(allLocations);
 });
+/**
+ * Router function to find all in a category.
+ *
+ * Directs http get query from it´s url to
+ * fetch every row with the given category, and
+ * returns them.
+ */
 router.get(`/:category`, async (req, res) => {
-  console.log(`[Log] in router find by category`);
   let allLocations;
   try {
     console.log(req.body);
@@ -49,27 +60,14 @@ router.get(`/:category`, async (req, res) => {
   }
   res.send(allLocations);
 });
-
-// FIND by ID
-router.get(`/:id([0-9]+)`, async (req, res) => {
-  try {
-    let foundLocation = await connection.findById(tableName, req.params.id);
-    if (foundLocation === null) {
-      res.status(404).send({
-        msg: "Cannot find resource with ID of " + req.params.id + ".",
-      });
-    } else {
-      res.send(foundLocation[0]);
-    }
-  } catch (err) {
-    res.status(500).send({
-      msg: unexpectedErr,
-    });
-  }
-});
-// DELETE by ID
+/**
+ * Router function to delete by id.
+ *
+ * Directs a http delete query from it´s url to
+ * delete a row from a database table with given
+ * id, and returns OK.
+ */
 router.delete(`/:id([0-9]+)`, async (req, res) => {
-  console.log(`[LOG] In router delete`);
   try {
     let foundLocation = await connection.findById(req.params.id);
     if (foundLocation !== null) {
@@ -86,9 +84,14 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
     });
   }
 });
-// INSERT AN ITEM
+/**
+ * Router function to add a new row.
+ *
+ * Directs a http post query from it´s url to
+ * add a new row to a database table with
+ * given information.
+ */
 router.post(`/`, async (req, res) => {
-  console.log(`[LOG] In router post`);
   try {
     connection.save(
       req.body.payload.finnish,
@@ -102,9 +105,14 @@ router.post(`/`, async (req, res) => {
     });
   }
 });
-// EDIT AN ITEM
+/**
+ * Router function to edit an existing row.
+ *
+ * Directs a http patch query from it´s url to
+ * edit a row from a database table with given
+ * id and information.
+ */
 router.patch(`/`, async (req, res) => {
-  console.log(`[LOG] In router patch`);
   try {
     connection.editEntry(
       req.body.payload.id,
