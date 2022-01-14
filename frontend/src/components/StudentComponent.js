@@ -1,3 +1,4 @@
+//@ts-check
 import React, { useState, useEffect } from "react";
 import TableComponent from "./TableComponent";
 import { Link } from "react-router-dom";
@@ -12,13 +13,36 @@ import {
 const axios = require("axios").default;
 const styleVariant = "contained";
 
+/**
+ * A student view component.
+ *
+ * A student view component, that decides
+ * if the child component is in admin mode
+ * or not.
+ *
+ * @param {object} props
+ * @returns - A table component in user mode.
+ */
 function StudentComponent(props) {
+  /** A boolean that controls if either list of words, or
+   * category and language select is visible. */
   const [visible, setVisible] = useState(false);
+  /** Contains the language that is displayed to the player. */
   const [visibleLang, setVisileLang] = useState("");
+  /** Contains the language that is not displayed to the player. */
   const [blankLang, setBlankLang] = useState("");
+  /** Contains the currently selected category. */
   const [category, setCategory] = useState("");
+  /** A list containing all the unique categories. */
   const [categories, setCategories] = useState([]);
 
+  /**
+   * Fetches categories from database and puts it to a list.
+   *
+   * Fetches all unique categories from the database, and
+   * puts the returned values to a list.
+   * @async
+   */
   useEffect(() => {
     const fetchData = async () => {
       let response = await axios.get(`http://localhost:8080/dictionary/unique`);
@@ -27,13 +51,30 @@ function StudentComponent(props) {
     };
     fetchData();
   }, []);
-
+  /**
+   * Displays the list of wordpairs.
+   *
+   * Sets the list of wordpairs visible to the players, and
+   * dynamically decides which language is visible, and which
+   * is not.
+   *
+   * @param {string} visibleLang - The language of the word that
+   * is displayed to the player.
+   * @param {string} blankLang - The language of the word that
+   * is the correct answer.
+   */
   const showList = (visibleLang, blankLang) => {
     setVisible(true);
     setVisileLang(visibleLang);
     setBlankLang(blankLang);
   };
-
+  /**
+   * Gets the chosen category and sets it to a variable.
+   *
+   * Gets the selected value from a list of radio buttons, and
+   * puts it to a variable to choose category.
+   * @param {object} event
+   */
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
