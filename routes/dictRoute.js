@@ -4,7 +4,41 @@ const connection = require("../database/functions");
 const router = express.Router();
 const unexpectedErr = `Serverside error occured.`;
 const badReqErr = `Invalid request.`;
-const category = `colors`;
+const Validator = require("jsonschema").Validator;
+const validator = new Validator();
+
+/**
+ * Add a schema to validate user input.
+ *
+ * Create an object, in order to validate user
+ * input when editing or posting rows.
+ */
+const schema = {
+  type: "object",
+  properties: {
+    finnish: {
+      type: "string",
+      minLength: 1,
+      maxLength: 40,
+    },
+    english: {
+      type: "string",
+      minLength: 1,
+      maxLength: 40,
+    },
+    swedish: {
+      type: "string",
+      minLength: 1,
+      maxLength: 40,
+    },
+    category: {
+      type: "string",
+      minLength: 1,
+      maxLength: 40,
+    },
+    required: ["finnish", "english", "swedish", "category"],
+  },
+};
 
 /**
  * Router function to get all from table.
@@ -92,13 +126,19 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
  */
 router.post(`/`, async (req, res) => {
   try {
-    connection.save(
-      req.body.payload.finnish,
-      req.body.payload.english,
-      req.body.payload.swedish,
-      req.body.payload.category
-    );
-    res.status(201).send();
+    const validation = validator.validate(req.body.payload, schema);
+    if (validation.errors.length > 0) {
+      console.log("ei menny läpi");
+      res.status(400).send(validation.errors);
+    } else {
+      connection.save(
+        req.body.payload.finnish,
+        req.body.payload.english,
+        req.body.payload.swedish,
+        req.body.payload.category
+      );
+      res.status(201).send();
+    }
   } catch (err) {
     res.status(500).send({
       msg: badReqErr,
@@ -114,14 +154,19 @@ router.post(`/`, async (req, res) => {
  */
 router.patch(`/`, async (req, res) => {
   try {
-    connection.editEntry(
-      req.body.payload.id,
-      req.body.payload.finnish,
-      req.body.payload.english,
-      req.body.payload.swedish,
-      req.body.payload.category
-    );
-    res.status(200).send();
+    const validation = validator.validate(req.body.payload, schema);
+    if (validation.errors.length > 0) {
+      res.status(400).send(validation.errors);
+    } else {
+      connection.editEntry(
+        req.body.payload.id,
+        req.body.payload.finnish,
+        req.body.payload.english,
+        req.body.payload.swedish,
+        req.body.payload.category
+      );
+      res.status(200).send();
+    }
   } catch (err) {
     res.status(500).send({
       msg: badReqErr,
