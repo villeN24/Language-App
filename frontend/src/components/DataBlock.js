@@ -38,20 +38,16 @@ const DataBlock = (props) => {
   useEffect(() => {
     if (props.visibleLang === "english") {
       setDispLang(props.english);
-    }
-    if (props.visibleLang === "finnish") {
+    } else if (props.visibleLang === "finnish") {
       setDispLang(props.finnish);
-    }
-    if (props.visibleLang === "swedish") {
+    } else {
       setDispLang(props.swedish);
     }
     if (props.blankLang === "finnish") {
       setCorrectAnswer(props.finnish);
-    }
-    if (props.blankLang === "english") {
+    } else if (props.blankLang === "english") {
       setCorrectAnswer(props.english);
-    }
-    if (props.blankLang === "swedish") {
+    } else {
       setCorrectAnswer(props.swedish);
     }
     // Triggers answer checking, only works once.
