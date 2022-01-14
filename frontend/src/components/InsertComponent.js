@@ -1,9 +1,15 @@
-//@ts-check
 import React, { useState } from "react";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
 import axios from "axios";
 
+/**
+ * A custom component to add new rows to database table.
+ *
+ * A small component that has 4 text input fields, and a
+ * button. Upon pressing the button will try to insert given
+ * information to make a new row in database.
+ */
 function InsertComponent(props) {
   /** A variable to store the finnish translation to be inserted. */
   const [finnish, setFinnish] = useState("");
