@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const cors = require("cors");
 const express = require("express");
 const pool = require("./database/functions.js");
@@ -11,7 +12,7 @@ let port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cors());
 app.use(`/${routeDictionary}`, dictionary);
-app.use(express.static("frontend/build"));
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 /**
  * The server of the project.
