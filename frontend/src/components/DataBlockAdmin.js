@@ -30,9 +30,7 @@ const DataBlockAdmin = (props) => {
    * @async
    */
   const deleteItem = async () => {
-    let response = await axios.delete(
-      `http://localhost:8080/dictionary/${props.id}`
-    );
+    let response = await axios.delete(`/dictionary/${props.id}`);
     console.log(response);
     // Hides the item so that list refresh is not necessary.
     setVisible(false);

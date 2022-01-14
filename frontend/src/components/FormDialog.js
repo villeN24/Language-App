@@ -55,7 +55,7 @@ export default function FormDialog(props) {
     };
     // Triggeres table rerefresh in parent component.
     props.afterInsert();
-    let res = await axios.patch(`http://localhost:8080/dictionary`, {
+    let res = await axios.patch(`/dictionary`, {
       payload: dataPacket,
     });
     console.log(res);

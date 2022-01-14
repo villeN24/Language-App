@@ -65,7 +65,7 @@ function InsertComponent(props) {
     setCategory("");
     // Triggeres table rerefresh in parent component.
     props.afterInsert();
-    let res = await axios.post(`http://localhost:8080/dictionary`, {
+    let res = await axios.post(`/dictionary`, {
       payload: dataPacket,
     });
     console.log(res);

@@ -44,7 +44,7 @@ function StudentComponent(props) {
    */
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get(`http://localhost:8080/dictionary/unique`);
+      let response = await axios.get(`/dictionary/unique`);
       let json = Object.values(response.data);
       setCategories(json);
     };
