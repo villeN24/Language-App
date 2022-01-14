@@ -123,7 +123,7 @@ const TableComponent = (props) => {
               <p>{`You got ${displayPoints} / ${table.length} answers correct.`}</p>
               <Button
                 variant="contained"
-                onClick={() => window.location.reload()}
+                onClick={() => window.location.reload(true)}
               >
                 Try again
               </Button>
