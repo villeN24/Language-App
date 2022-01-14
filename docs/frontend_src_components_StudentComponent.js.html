@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: frontend/src/components/StudentComponent.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: frontend/src/components/StudentComponent.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
+import TableComponent from "./TableComponent";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  RadioGroup,
+  Radio,
+} from "@mui/material";
+const axios = require("axios").default;
+const styleVariant = "contained";
+
+/**
+ * A student view component.
+ *
+ * A custom component that includes the list
+ * of all wordpairs. Decides if the child
+ * component is in admin mode or not.
+ */
+function StudentComponent(props) {
+  /** A boolean that controls if either list of words, or
+   * category and language select is visible. */
+  const [visible, setVisible] = useState(false);
+  /** Contains the language that is displayed to the player. */
+  const [visibleLang, setVisileLang] = useState("");
+  /** Contains the language that is not displayed to the player. */
+  const [blankLang, setBlankLang] = useState("");
+  /** Contains the currently selected category. */
+  const [category, setCategory] = useState("");
+  /** A list containing all the unique categories. */
+  const [categories, setCategories] = useState([]);
+
+  /**
+   * Fetches categories from database and puts it to a list.
+   *
+   * Fetches all unique categories from the database, and
+   * puts the returned values to a list.
+   * @async
+   */
+  useEffect(() => {
+    const fetchData = async () => {
+      let response = await axios.get(`/dictionary/unique`);
+      let json = Object.values(response.data);
+      setCategories(json);
+    };
+    fetchData();
+  }, []);
+  /**
+   * Displays the list of wordpairs.
+   *
+   * Sets the list of wordpairs visible to the players, and
+   * dynamically decides which language is visible, and which
+   * is not.
+   *
+   * @param {string} visibleLang - The language of the word that
+   * is displayed to the player.
+   * @param {string} blankLang - The language of the word that
+   * is the correct answer.
+   */
+  const showList = (visibleLang, blankLang) => {
+    setVisible(true);
+    setVisileLang(visibleLang);
+    setBlankLang(blankLang);
+  };
+  /**
+   * Gets the chosen category and sets it to a variable.
+   *
+   * Gets the selected value from a list of radio buttons, and
+   * puts it to a variable to choose category.
+   * @param {object} event
+   */
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  return (
+    &lt;div>
+      &lt;Link to="/">
+        &lt;Button
+          id="BackButton"
+          style={{ minWidth: "200px", minHeight: "80px" }}
+          variant={styleVariant}
+        >
+          Go back
+        &lt;/Button>
+      &lt;/Link>
+      {!visible ? (
+        &lt;div>
+          &lt;FormControl component="fieldset">
+            &lt;FormLabel component="legend">Select category&lt;/FormLabel>
+            &lt;RadioGroup
+              aria-label="Select category"
+              defaultValue="All"
+              name="radio-buttons-group"
+            >
+              &lt;FormControlLabel
+                value=""
+                control={&lt;Radio onChange={handleChange} />}
+                label="All"
+              />
+              {categories.map((id) => (
+                &lt;FormControlLabel
+                  value={id.category}
+                  control={&lt;Radio onChange={handleChange} />}
+                  label={id.category}
+                />
+              ))}
+            &lt;/RadioGroup>
+          &lt;/FormControl>
+          &lt;br />
+          &lt;div className="LanguageButtons">
+            &lt;Button
+              variant={styleVariant}
+              onClick={() => showList("finnish", "english")}
+            >
+              {`Write english words for finnish`}
+            &lt;/Button>
+          &lt;/div>
+          &lt;div className="LanguageButtons">
+            &lt;Button
+              className="LanguageButtons"
+              variant={styleVariant}
+              onClick={() => showList("english", "finnish")}
+            >
+              {`Write finnish words for english`}
+            &lt;/Button>
+          &lt;/div>
+          &lt;div className="LanguageButtons">
+            &lt;Button
+              variant={styleVariant}
+              onClick={() => showList("swedish", "finnish")}
+            >
+              {`Write finnish words for swedish`}
+            &lt;/Button>
+          &lt;/div>
+          &lt;br />
+          &lt;div className="LanguageButtons">
+            &lt;Button
+              className="LanguageButtons"
+              variant={styleVariant}
+              onClick={() => showList("finnish", "swedish")}
+            >
+              {`Write swedish words for finnish`}
+            &lt;/Button>
+          &lt;/div>
+          &lt;div className="LanguageButtons">
+            &lt;Button
+              variant={styleVariant}
+              onClick={() => showList("english", "swedish")}
+            >
+              {`Write swedish words for english`}
+            &lt;/Button>
+          &lt;/div>
+          &lt;div className="LanguageButtons">
+            &lt;Button
+              className="LanguageButtons"
+              variant={styleVariant}
+              onClick={() => showList("swedish", "english")}
+            >
+              {`Write english words for swedish`}
+            &lt;/Button>
+          &lt;/div>
+        &lt;/div>
+      ) : (
+        &lt;TableComponent
+          visibleLang={visibleLang}
+          blankLang={blankLang}
+          category={category}
+          admin={false}
+        />
+      )}
+    &lt;/div>
+  );
+}
+
+export default StudentComponent;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#connection">connection</a></li><li><a href="global.html#DataBlock">DataBlock</a></li><li><a href="global.html#DataBlockAdmin">DataBlockAdmin</a></li><li><a href="global.html#HomeComponent">HomeComponent</a></li><li><a href="global.html#InsertComponent">InsertComponent</a></li><li><a href="global.html#points">points</a></li><li><a href="global.html#schema">schema</a></li><li><a href="global.html#server">server</a></li><li><a href="global.html#StudentComponent">StudentComponent</a></li><li><a href="global.html#TableComponent">TableComponent</a></li><li><a href="global.html#TeacherComponent">TeacherComponent</a></li><li><a href="global.html#theme">theme</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jan 14 2022 20:06:00 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

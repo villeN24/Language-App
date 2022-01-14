@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: frontend/src/components/TableComponent.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: frontend/src/components/TableComponent.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from "react";
+import DataBlock from "./DataBlock";
+import DataBlockAdmin from "./DataBlockAdmin";
+import Button from "@mui/material/Button";
+import InsertComponent from "./InsertComponent";
+const axios = require("axios").default;
+
+/** Variable to store the point score of the user. */
+var points = 0;
+
+/**
+ * A custom tablecomponent, to map rows dynamically.
+ *
+ * A component that fetched a database table, and
+ * renders every row of the fetched table. Will either
+ * render admin or user version of the row component.
+ */
+const TableComponent = (props) => {
+  /** Contains the fetched database table. */
+  const [table, setTable] = useState([]);
+  /** Helper variable to trigger answer check in child components. */
+  const [trigger, setTrigger] = useState(0);
+  /** Stores the score of the player. */
+  const [displayPoints, setDisplayPoints] = useState(0);
+  /** Upon changing, refreshes the useEffect. */
+  const [inserted, setInserted] = useState(true);
+  /** Boolean to control if user's score is shown. */
+  const [showScore, setShowScore] = useState(false);
+
+  /**
+   * Fetches the data from database and
+   * puts it in a list.
+   *
+   * Fetches the data from a database from a certain
+   * category, and will put it in a variable in a
+   * randomized order. Will update the variable if
+   * variables inserted or props.category is changed.
+   * If given category is null, will fetch everything.
+   * @async
+   */
+  useEffect(() => {
+    const fetchData = async () => {
+      let response = await axios.get(`/dictionary/${props.category}`);
+      let json = Object.values(response.data);
+      if (!props.admin) {
+        json.sort(() => Math.random() - 0.5);
+      }
+      setTable(json);
+    };
+    fetchData();
+  }, [inserted, props.category]);
+
+  /**
+   * Triggers the check function inside the
+   * child components.
+   *
+   * Will change variable trigger from 0 to 1. That
+   * will trigger useEffect in child compoenent that
+   * checks the answer. Will also display the score
+   * of the user.
+   */
+  const sendAnswers = () => {
+    setTrigger(1);
+    setShowScore(true);
+  };
+  /**
+   * Will add 1 point to the user's score if triggered.
+   */
+  const addPoint = () => {
+    points = points + 1;
+    setDisplayPoints(points);
+  };
+  /** Triggers refreshing of the table.
+   *
+   * Changes a variable in the useEffect method to
+   * trigger refresh. Is given as a prop to a child
+   * method, and triggered from there.
+   */
+  const afterInsert = () => {
+    setInserted(!inserted);
+  };
+  return (
+    &lt;div>
+      &lt;ul>
+        {table.map((id) => (
+          &lt;li key={id.id}>
+            {!props.admin ? (
+              &lt;div className="UserBlock">
+                &lt;DataBlock
+                  id={id.id}
+                  visibleLang={props.visibleLang}
+                  blankLang={props.blankLang}
+                  finnish={id.finnish}
+                  english={id.english}
+                  swedish={id.swedish}
+                  addPoint={addPoint}
+                  trigger={trigger}
+                />
+              &lt;/div>
+            ) : (
+              &lt;DataBlockAdmin
+                id={id.id}
+                finnish={id.finnish}
+                english={id.english}
+                swedish={id.swedish}
+                category={id.category}
+                afterInsert={afterInsert}
+              />
+            )}
+          &lt;/li>
+        ))}
+      &lt;/ul>
+      {!props.admin ? (
+        &lt;div id="SubmitButton">
+          &lt;Button variant="contained" onClick={sendAnswers}>
+            Submit answers
+          &lt;/Button>
+          &lt;br />
+          {showScore ? (
+            &lt;div>
+              &lt;p>{`You got ${displayPoints} / ${table.length} answers correct.`}&lt;/p>
+            &lt;/div>
+          ) : null}
+        &lt;/div>
+      ) : (
+        &lt;div>
+          &lt;InsertComponent afterInsert={afterInsert} />
+        &lt;/div>
+      )}
+    &lt;/div>
+  );
+};
+
+export default TableComponent;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#connection">connection</a></li><li><a href="global.html#DataBlock">DataBlock</a></li><li><a href="global.html#DataBlockAdmin">DataBlockAdmin</a></li><li><a href="global.html#HomeComponent">HomeComponent</a></li><li><a href="global.html#InsertComponent">InsertComponent</a></li><li><a href="global.html#points">points</a></li><li><a href="global.html#schema">schema</a></li><li><a href="global.html#server">server</a></li><li><a href="global.html#StudentComponent">StudentComponent</a></li><li><a href="global.html#TableComponent">TableComponent</a></li><li><a href="global.html#TeacherComponent">TeacherComponent</a></li><li><a href="global.html#theme">theme</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jan 14 2022 20:06:00 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

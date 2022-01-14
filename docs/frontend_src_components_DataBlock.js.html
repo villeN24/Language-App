@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: frontend/src/components/DataBlock.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: frontend/src/components/DataBlock.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from "react";
+import Input from "@mui/material/Input";
+import Box from "@mui/material/Box";
+
+/**
+ * A user component to display the game.
+ *
+ * A custom component to display the word to
+ * be translated and functionality to translate
+ * it with answer checking.
+ */
+const DataBlock = (props) => {
+  /** Displays the result of users's answer. */
+  const [answer, setAnswer] = useState("");
+  /** Is set to the correct answer of the question. */
+  const [correctAnswer, setCorrectAnswer] = useState("");
+  /** Stores the user's typed answer. */
+  const [visual, setVisual] = useState("");
+  /** Controls the color of the result box. */
+  const [block, setBlockColor] = useState(null);
+  /** The displayed word that the user translates. */
+  const [dispLang, setDispLang] = useState(null);
+  /** Boolean to control if the correct answer is shown. */
+  const [dispCorrect, setDispCorrect] = useState(false);
+
+  /** Sets the direction where list flexes. */
+  document.documentElement.style.setProperty("--flex-direction", "column");
+
+  /**
+   * Sets the correct and visible word.
+   *
+   * Sets the correct answer and displayed word
+   * to their correct value. Will also check if
+   * the answer is correct when props.trigger
+   * is changed.
+   */
+  useEffect(() => {
+    if (props.visibleLang === "english") {
+      setDispLang(props.english);
+    } else if (props.visibleLang === "finnish") {
+      setDispLang(props.finnish);
+    } else {
+      setDispLang(props.swedish);
+    }
+    if (props.blankLang === "finnish") {
+      setCorrectAnswer(props.finnish);
+    } else if (props.blankLang === "english") {
+      setCorrectAnswer(props.english);
+    } else {
+      setCorrectAnswer(props.swedish);
+    }
+    // Triggers answer checking, only works once.
+    if (props.trigger === 1) {
+      checkAnswer(visual);
+    }
+  }, [props.trigger, props.checkFor]);
+
+  /**
+   * Sets the user´s typed text to a variable.
+   *
+   * Gets the value typed in a &lt;Input> component, and
+   * then removes whitespace and sets the value to
+   * lowercase. Then will set the value to a variable.
+   *
+   * @param {object} event - Includes the string that is
+   * typed in the &lt;Input> variable.
+   */
+  const handleChange = (event) => {
+    event.preventDefault();
+    let tmp = event.target.value.trim();
+    let fin = tmp.toLowerCase();
+    setVisual(fin);
+  };
+
+  /**
+   * Checks the answer.
+   *
+   * Checks if the user's answer is correct. If it
+   * is, displays "Correct", a green box and adds a
+   * point if it is not, displays "Wrong", a red box
+   * and the correct answer.
+   *
+   * @param {String} input - The user's answer that
+   * is stored in the variable visual.
+   */
+  const checkAnswer = (input) => {
+    if (input === correctAnswer) {
+      setAnswer("Correct");
+      // Sets the color of the box green to visualise success.
+      setBlockColor("#24BF00");
+      // Adds a point to user´s score.
+      props.addPoint();
+    } else {
+      setAnswer("Wrong");
+      // Sets the color of the box red to visualise failure.
+      setBlockColor("#EE1212");
+      // Displays the correct answer.
+      setDispCorrect(true);
+    }
+  };
+  return (
+    &lt;div>
+      &lt;Input
+        placeholder="Write your answer"
+        type="text"
+        onChange={(event) => handleChange(event)}
+        variant="filled"
+      />
+      &lt;p>{dispLang}&lt;/p>
+      &lt;p>{answer}&lt;/p>
+      &lt;Box
+        style={{ display: "inline-block" }}
+        sx={{
+          width: 20,
+          height: 20,
+          backgroundColor: `${block}`,
+        }}
+      />
+      {dispCorrect ? &lt;p>The correct answer is: {correctAnswer}&lt;/p> : null}
+    &lt;/div>
+  );
+};
+
+export default DataBlock;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#connection">connection</a></li><li><a href="global.html#DataBlock">DataBlock</a></li><li><a href="global.html#DataBlockAdmin">DataBlockAdmin</a></li><li><a href="global.html#HomeComponent">HomeComponent</a></li><li><a href="global.html#InsertComponent">InsertComponent</a></li><li><a href="global.html#points">points</a></li><li><a href="global.html#schema">schema</a></li><li><a href="global.html#server">server</a></li><li><a href="global.html#StudentComponent">StudentComponent</a></li><li><a href="global.html#TableComponent">TableComponent</a></li><li><a href="global.html#TeacherComponent">TeacherComponent</a></li><li><a href="global.html#theme">theme</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jan 14 2022 20:06:00 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

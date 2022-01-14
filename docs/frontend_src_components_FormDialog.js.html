@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: frontend/src/components/FormDialog.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: frontend/src/components/FormDialog.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import EditIcon from "@material-ui/icons/Edit";
+const axios = require("axios").default;
+
+/**
+ * A component that is used to edit existing wordpairs.
+ *
+ * This component is triggered when edit button is pressed
+ * in the parent component. Opens up a form with 4 text
+ * fields. When submitted, will send data to backend in
+ * order to edit a row in a database table.
+ *
+ */
+export default function FormDialog(props) {
+  /** A boolean to control if the form dialog is shown. */
+  const [open, setOpen] = useState(false);
+  /** A variable to store the finnish translation to be inserted. */
+  const [finnish, setFinnish] = useState(null);
+  /** A variable to store the english translation to be inserted. */
+  const [english, setEnglish] = useState(null);
+  /** A variable to store the swedish translation to be inserted. */
+  const [swedish, setSwedish] = useState(null);
+  /** A variable to store the category of the words to be inserted. */
+  const [category, setCategory] = useState(null);
+
+  /** Opens the dialog form of the edit button. */
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  /** Closes the dialog form of the edit button. */
+  const handleClose = () => {
+    setOpen(false);
+  };
+  /** Sends data to backend to edit a row in the database.
+   *
+   * Creates an object of the data to be sent to backend.
+   * Then sends the data, logs response to console and
+   * triggeres a table refresh in the parent component.
+   * @async
+   */
+  const editRow = async () => {
+    let dataPacket = {
+      finnish: finnish,
+      english: english,
+      swedish: swedish,
+      category: category,
+      id: props.id,
+    };
+    // Triggeres table rerefresh in parent component.
+    props.afterInsert();
+    let res = await axios.patch(`/dictionary`, {
+      payload: dataPacket,
+    });
+    console.log(res);
+  };
+  /** Closes the edit form and triggeres editRow(). */
+  const handleConfirm = () => {
+    editRow();
+    setOpen(false);
+  };
+
+  /**
+   * Gets data from the form´s text fields and sets it to a variable.
+   *
+   * Gets the data that is typed in the text fields live, and
+   * sets the value to a corresponding variable. Will decide
+   * to what variable to set it to by from parameter.
+   *
+   * @param {object} event - A string value from the form text field.
+   * @param {number} from - A integer to decide from which text
+   * field event is from.
+   */
+  const handleChange = (event, from) => {
+    event.preventDefault();
+    if (from === 1) {
+      setFinnish(event.target.value);
+    } else if (from === 2) {
+      setEnglish(event.target.value);
+    } else if (from === 3) {
+      setSwedish(event.target.value);
+    } else {
+      setCategory(event.target.value);
+    }
+  };
+
+  return (
+    &lt;div>
+      &lt;Button
+        variant="outlined"
+        onClick={handleClickOpen}
+        startIcon={&lt;EditIcon />}
+      >
+        Edit item
+      &lt;/Button>
+      &lt;Dialog open={open} onClose={handleClose}>
+        &lt;DialogTitle>Edit an existing row&lt;/DialogTitle>
+        &lt;DialogContent>
+          &lt;DialogContentText>Type the new information&lt;/DialogContentText>
+          &lt;TextField
+            autoFocus
+            defaultValue={props.finnish}
+            margin="dense"
+            label="Finnish translation"
+            fullWidth
+            variant="standard"
+            onChange={(event) => handleChange(event, 1)}
+          />
+          &lt;TextField
+            defaultValue={props.english}
+            margin="dense"
+            label="English translation"
+            fullWidth
+            variant="standard"
+            onChange={(event) => handleChange(event, 2)}
+          />
+          &lt;TextField
+            defaultValue={props.swedish}
+            margin="dense"
+            label="Swedish translation"
+            fullWidth
+            variant="standard"
+            onChange={(event) => handleChange(event, 3)}
+          />
+          &lt;TextField
+            defaultValue={props.category}
+            margin="dense"
+            label="Category"
+            fullWidth
+            variant="standard"
+            onChange={(event) => handleChange(event, 4)}
+          />
+        &lt;/DialogContent>
+        &lt;DialogActions>
+          &lt;Button onClick={handleClose}>Cancel&lt;/Button>
+          &lt;Button onClick={handleConfirm}>Confirm changes&lt;/Button>
+        &lt;/DialogActions>
+      &lt;/Dialog>
+    &lt;/div>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#connection">connection</a></li><li><a href="global.html#DataBlock">DataBlock</a></li><li><a href="global.html#DataBlockAdmin">DataBlockAdmin</a></li><li><a href="global.html#HomeComponent">HomeComponent</a></li><li><a href="global.html#InsertComponent">InsertComponent</a></li><li><a href="global.html#points">points</a></li><li><a href="global.html#schema">schema</a></li><li><a href="global.html#server">server</a></li><li><a href="global.html#StudentComponent">StudentComponent</a></li><li><a href="global.html#TableComponent">TableComponent</a></li><li><a href="global.html#TeacherComponent">TeacherComponent</a></li><li><a href="global.html#theme">theme</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jan 14 2022 20:06:00 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
