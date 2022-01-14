@@ -1,5 +1,4 @@
 const express = require(`express`);
-const { LONG } = require("mysql/lib/protocol/constants/types");
 const connection = require("../database/functions");
 const router = express.Router();
 const unexpectedErr = `Serverside error occured.`;
