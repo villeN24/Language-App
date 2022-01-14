@@ -9,7 +9,7 @@ const validator = new Validator();
 /**
  * Add a schema to validate user input.
  *
- * Create an object, in order to validate user
+ * Creates an object, that is used to validate user
  * input when editing or posting rows.
  */
 const schema = {

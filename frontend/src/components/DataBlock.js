@@ -56,8 +56,11 @@ const DataBlock = (props) => {
   }, [props.trigger, props.checkFor]);
 
   /**
-   * Sets the written text in <Input> component
-   * to a variable.
+   * Sets the user´s typed text to a variable.
+   *
+   * Gets the value typed in a <Input> component, and
+   * then removes whitespace and sets the value to
+   * lowercase. Then will set the value to a variable.
    *
    * @param {object} event - Includes the string that is
    * typed in the <Input> variable.

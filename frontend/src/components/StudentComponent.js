@@ -15,12 +15,9 @@ const styleVariant = "contained";
 /**
  * A student view component.
  *
- * A student view component, that decides
- * if the child component is in admin mode
- * or not.
- *
- * @param {object} props
- * @returns - A table component in user mode.
+ * A custom component that includes the list
+ * of all wordpairs. Decides if the child
+ * component is in admin mode or not.
  */
 function StudentComponent(props) {
   /** A boolean that controls if either list of words, or
