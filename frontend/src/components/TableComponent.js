@@ -119,9 +119,6 @@ const TableComponent = (props) => {
           {showScore ? (
             <div>
               <p>{`You got ${displayPoints} / ${table.length} answers correct.`}</p>
-              <Button variant="contained" onClick={() => window.history.go(0)}>
-                Try again
-              </Button>
             </div>
           ) : null}
         </div>
