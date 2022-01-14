@@ -29,6 +29,10 @@ Built with
 * Node.js
 * mysql
 
+## Screencast
+
+https://youtu.be/OcK0CDb9xco
+
 ## Screenshots
 Main view
 ![image](https://user-images.githubusercontent.com/77456796/149579354-84bc7089-59ad-4352-84dd-75a28a3545c1.png)
@@ -40,7 +44,3 @@ Example of after submitting answers
 ![image](https://user-images.githubusercontent.com/77456796/149579568-2cda73ab-1758-4feb-a497-a44390df1bf7.png)
 Teacher view
 ![image](https://user-images.githubusercontent.com/77456796/149579578-b8545fcc-2a54-46c5-99c2-dc6eb077b5f0.png)
-
-## Screencast
-
-https://youtu.be/OcK0CDb9xco
