@@ -17,10 +17,6 @@ A fullstack schoolproject, that will will ask the user to translate words to a d
 - English
 - Swedish
 
-## Build status
-
-The project is currently built and hosted in Heroku, link to app: https://translateyourwords.herokuapp.com/
-
 ## Technologies
 
 
